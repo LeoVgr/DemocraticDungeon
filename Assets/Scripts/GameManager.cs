@@ -7,11 +7,12 @@ public class GameManager : MonoBehaviour
 
     #region "Attributs"
     public float selectionTime;
-    public List<GameObject> players;
-    public List<GameObject> orderedPlayers;
+    public List<Character> players;
+    public Queue<Character> orderedPlayers;
 
     private float timer = 0;
     private Phase currentPhase;
+
 
     private enum Phase{
         Menu,
@@ -25,13 +26,8 @@ public class GameManager : MonoBehaviour
     #region "Events"
     private void Awake()
     {
-        orderedPlayers = new List<GameObject>();
+        orderedPlayers = new Queue<Character>();
         currentPhase = Phase.Menu;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
 
     }
 
@@ -52,15 +48,26 @@ public class GameManager : MonoBehaviour
                 break;
 
             case Phase.ActionsSelection:
-
+                
                 //TODO : Selection of actions by players
 
                 //End of selection time
                 if (timer >= selectionTime)
                     currentPhase = Phase.ActionsResolution;
+
                 break;
 
             case Phase.ActionsResolution:
+                if (!orderedPlayers.Peek().Busy)
+                {
+                    Character heroePlaying = orderedPlayers.Peek();
+                    heroePlaying.PlayAction(0);
+                }
+                else
+                {
+                    orderedPlayers.Dequeue();
+                }
+                                            
                 break;
 
             default:
@@ -86,7 +93,7 @@ public class GameManager : MonoBehaviour
                 randomIndex = Random.Range(0, players.Count);
             }
 
-            orderedPlayers.Add(players[randomIndex]);
+            orderedPlayers.Enqueue(players[randomIndex]);
         }
     }
     #endregion
