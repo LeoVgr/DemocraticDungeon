@@ -9,6 +9,8 @@ public abstract class Character : MonoBehaviour
     protected float _initialLife;
 
     public List<string> Actions { get; protected set; }
+    public List<string> RemainingActions { get; protected set; }
+    public List<string> ProposalActions { get; protected set; }
 
     protected Animator anim;
     public int CountActions { get => Actions.Count; }
@@ -22,6 +24,11 @@ public abstract class Character : MonoBehaviour
 
     [NonSerialized]
     public Character protector = null;
+
+    private void Awake()
+    {
+        RemainingActions = Actions;
+    }
 
     protected virtual void Start()
     {
@@ -86,5 +93,25 @@ public abstract class Character : MonoBehaviour
         Exposed = false;
         Encouraged = false;
         Invulnerable = false;
+    }
+
+    public void PickRandomActions()
+    {
+        if(RemainingActions.Count <= 0)
+        {
+            RemainingActions = Actions;
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            if(RemainingActions.Count > 0)
+            {
+                int randomNumber = UnityEngine.Random.Range(0, RemainingActions.Count);
+                ProposalActions.Add(RemainingActions[randomNumber]);
+                RemainingActions.RemoveAt(randomNumber);
+            }
+        }
+      
+
     }
 }

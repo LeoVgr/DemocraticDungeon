@@ -63,7 +63,12 @@ public class GameManager : MonoBehaviour
                 break;
 
             case Phase.ActionsSelection:
-                
+                foreach (var heroes in players)
+                {
+                    heroes.PickRandomActions();
+                }
+
+
                 //TODO : Selection of actions by players
 
                 //End of selection time
