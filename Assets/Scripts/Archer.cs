@@ -10,15 +10,19 @@ public class Archer : Character
         switch (index)
         {
             case 0:
-                Action0();
+                Debug.Log("Action0");
+                Fireball();
                 break;
             case 1:
+                Debug.Log("Action1");
                 Action1();
                 break;
             case 2:
+                Debug.Log("Action2");
                 Action2();
                 break;
             case 3:
+                Debug.Log("Action3");
                 Action3();
                 break;
             default:
@@ -30,7 +34,7 @@ public class Archer : Character
 
     //Here busy = false because we don't an animation yet, but we should do it as an key event during the animation
 
-    private void Action0()
+    private void Fireball()
     {
         Busy = false;
     }

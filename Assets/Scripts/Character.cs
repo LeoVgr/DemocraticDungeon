@@ -5,10 +5,23 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour
 {
     [SerializeField]
-    private float _initialLife;
-    public bool Busy { get; protected set; }
+    protected float _initialLife;
 
+    [SerializeField]
+    protected List<string> actions;
+
+    public int CountActions { get => actions.Count; }
+    public bool Busy { get; protected set; }
     public float Life { get; protected set; }
+
+    public string GetActionName(int index)
+    {
+        if (index < CountActions)
+        {
+            return actions[index];
+        }
+        return "";
+    }
 
     public abstract void PlayAction(int index);
 
@@ -37,5 +50,4 @@ public abstract class Character : MonoBehaviour
         Debug.Log(gameObject.name + " dead");
         return;
     }
-
 }

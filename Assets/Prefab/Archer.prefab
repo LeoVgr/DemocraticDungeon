@@ -96,6 +96,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialLife: 100
+  actions:
+  - 1
+  - 2
+  - 3
+  - 4
 --- !u!95 &2604269375420831550
 Animator:
   serializedVersion: 3
