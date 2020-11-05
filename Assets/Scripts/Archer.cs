@@ -8,7 +8,8 @@ public class Archer : Character
     public float ambushDamage;
     public float approximateShotDamageOnBoss;
     public float approximateShotDamageOnTeammate;
-    public float swarmOfArrowDamage;
+    public float swarmOfArrowDamageOnBoss;
+    public float swarmOfArrowDamageOnTeammate;
 
     public override void PlayAction(int index)
     {
@@ -18,18 +19,22 @@ public class Archer : Character
             case 0:
                 Debug.Log("Action0");
                 Ambush();
+                DropAction(0);
                 break;
             case 1:
                 Debug.Log("Action1");
                 ApproximateShot();
+                DropAction(1);
                 break;
             case 2:
                 Debug.Log("Action2");
                 SwarmOfArrows();
+                DropAction(2);
                 break;
             case 3:
                 Debug.Log("Action3");
                 PomPomGirl();
+                DropAction(3);
                 break;
             default:
                 Busy = false;
@@ -91,9 +96,13 @@ public class Archer : Character
 
         foreach (Character character in CharacterManager.sharedInstance.characters)
         {
-            if (character.Exposed || character.gameObject.name == "Boss")
+            if (character.gameObject.name == "Boss")
             {
-                character.ReceiveDamage((Encouraged) ? swarmOfArrowDamage * 2 : swarmOfArrowDamage);
+                character.ReceiveDamage((Encouraged) ? swarmOfArrowDamageOnBoss * 2 : swarmOfArrowDamageOnBoss);
+            }
+            if (character.Exposed)
+            {
+                character.ReceiveDamage((Encouraged) ? swarmOfArrowDamageOnTeammate * 2 : swarmOfArrowDamageOnTeammate);
             }
         }
 

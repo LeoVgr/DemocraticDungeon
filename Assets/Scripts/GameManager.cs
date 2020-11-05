@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
 
     #region "Attributs"
     public float selectionTime;
-    public List<Character> players;
     public List<Character> orderedPlayers;
 
     private float timer = 0;
@@ -63,12 +62,12 @@ public class GameManager : MonoBehaviour
                 break;
 
             case Phase.ActionsSelection:
-                foreach (var heroes in players)
+                foreach (var heroes in CharacterManager.sharedInstance.characters)
                 {
                     heroes.PickRandomActions();
                 }
 
-
+                    
                 //TODO : Selection of actions by players
 
                 //End of selection time
@@ -80,7 +79,7 @@ public class GameManager : MonoBehaviour
             case Phase.ActionsResolution:
                 if(orderedPlayers.Count == 0)
                 {
-                    foreach (var heroe in players)
+                    foreach (var heroe in CharacterManager.sharedInstance.characters)
                     {
                         heroe.Reset();
                     }
@@ -114,16 +113,16 @@ public class GameManager : MonoBehaviour
     {
         orderedPlayers.Clear();
 
-        while(orderedPlayers.Count < players.Count)
+        while(orderedPlayers.Count < CharacterManager.sharedInstance.characters.Count)
         {
-            int randomIndex = Random.Range(0, players.Count);
+            int randomIndex = Random.Range(0, CharacterManager.sharedInstance.characters.Count);
 
-            while (orderedPlayers.Contains(players[randomIndex]))
+            while (orderedPlayers.Contains(CharacterManager.sharedInstance.characters[randomIndex]))
             {
-                randomIndex = Random.Range(0, players.Count);
+                randomIndex = Random.Range(0, CharacterManager.sharedInstance.characters.Count);
             }
 
-            orderedPlayers.Add(players[randomIndex]);
+            orderedPlayers.Add(CharacterManager.sharedInstance.characters[randomIndex]);
         }
     }
     #endregion

@@ -15,15 +15,19 @@ public class Barbare : Character
         {
             case 0:
                 MagicKiss();
+                DropAction(0);
                 break;
             case 1:
                 KnockOut();
+                DropAction(1);
                 break;
             case 2:
                 HeadButt();
+                DropAction(2);
                 break;
             case 3:
                 BeastlyStrike();
+                DropAction(3);
                 break;
             default:
                 Busy = false;
@@ -43,7 +47,7 @@ public class Barbare : Character
     private void KnockOut()
     {
         anim.SetTrigger("KnockOut");
-
+        Exposed = true;
         Character boss = CharacterManager.sharedInstance.characters[0];
 
         foreach (var item in CharacterManager.sharedInstance.characters)
@@ -85,6 +89,7 @@ public class Barbare : Character
     private void HeadButt()
     {
         anim.SetTrigger("HeadButt");
+        Exposed = true;
         ReceiveDamage((Encouraged) ? headButtSelfDamage * 2 : headButtSelfDamage);
 
         foreach (var item in CharacterManager.sharedInstance.characters)
@@ -99,7 +104,20 @@ public class Barbare : Character
     private void BeastlyStrike()
     {
         anim.SetTrigger("BeastlyStrike");
-        //TODO
+        Character boss;
+        foreach (var heroe in GameManager.sharedInstance.orderedPlayers)
+        {
+            if(heroe.gameObject.name == "Boss")
+            {
+                boss = heroe;
+                GameManager.sharedInstance.orderedPlayers.Remove(boss);
+                GameManager.sharedInstance.orderedPlayers.Add(boss);
+
+                
+
+            }
+        }
+        RemainingActions.Remove(Actions[Random.Range(0,RemainingActions.Count)]);
     }
 
 }

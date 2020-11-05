@@ -9,8 +9,10 @@ public abstract class Character : MonoBehaviour
     protected float _initialLife;
 
     public List<string> Actions { get; protected set; }
-    public List<string> RemainingActions { get; protected set; }
-    public List<string> ProposalActions { get; protected set; }
+    public Dictionary<string, string> ActionsDescription { get; protected set; }
+    public Dictionary<string, string> RemainingActions { get; protected set; }
+    public Dictionary<string, string> ProposalActions { get; protected set; }
+
 
     protected Animator anim;
     public int CountActions { get => Actions.Count; }
@@ -21,13 +23,15 @@ public abstract class Character : MonoBehaviour
     public bool CanBeHealed { get; set; }
     public bool Encouraged { get; set; }
     public bool Invulnerable { get; set; }
+    public bool Memoried { get; set; }
+    public string Team { get; set; }
 
     [NonSerialized]
     public Character protector = null;
 
     private void Awake()
     {
-        RemainingActions = Actions;
+        RemainingActions = ActionsDescription;
     }
 
     protected virtual void Start()
@@ -39,6 +43,7 @@ public abstract class Character : MonoBehaviour
         CanBeHealed = false;
         Encouraged = false;
         Invulnerable = false;
+        Memoried = false;
         anim = GetComponent<Animator>();
     }
 
@@ -93,13 +98,16 @@ public abstract class Character : MonoBehaviour
         Exposed = false;
         Encouraged = false;
         Invulnerable = false;
+        Memoried = false;
     }
 
     public void PickRandomActions()
     {
-        if(RemainingActions.Count <= 0)
+        ProposalActions.Clear();
+
+        if (RemainingActions.Count <= 0)
         {
-            RemainingActions = Actions;
+            RemainingActions = ActionsDescription;
         }
 
         for (int i = 0; i < 2; i++)
@@ -107,11 +115,27 @@ public abstract class Character : MonoBehaviour
             if(RemainingActions.Count > 0)
             {
                 int randomNumber = UnityEngine.Random.Range(0, RemainingActions.Count);
-                ProposalActions.Add(RemainingActions[randomNumber]);
-                RemainingActions.RemoveAt(randomNumber);
+             
+                ProposalActions.Add(Actions[randomNumber], RemainingActions[Actions[randomNumber]]);
+              
             }
         }
       
 
+    }
+
+    public void DropAction(int index)
+    {
+        if (!Memoried)
+        {
+            RemainingActions.Remove(Actions[index]);
+        }
+        else
+        {
+            if(UnityEngine.Random.Range(0,1) == 0)
+            {
+                RemainingActions.Remove(Actions[index]);
+            }
+        }
     }
 }
