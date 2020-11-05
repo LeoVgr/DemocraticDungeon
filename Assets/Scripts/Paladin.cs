@@ -16,7 +16,7 @@ public class Paladin : Character
                 Heal();
                 break;
             case 1:
-                Action1();
+                DivineStrike();
                 break;
             case 2:
                 Action2();
@@ -48,8 +48,12 @@ public class Paladin : Character
         Busy = false;
     }
 
-    private void Action1()
+    private void DivineStrike()
     {
+        if (Random.Range(0,5) == 0)
+        {
+
+        }
         Busy = false;
     }
 
