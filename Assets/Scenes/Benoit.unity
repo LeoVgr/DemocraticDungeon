@@ -330,6 +330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paladin
       objectReference: {fileID: 0}
+    - target: {fileID: 6699175120752916778, guid: fdeb275f5fbafd247ba80a789b4122a8, type: 3}
+      propertyPath: _initialLife
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdeb275f5fbafd247ba80a789b4122a8, type: 3}
 --- !u!1001 &3822560711477861596
@@ -387,6 +391,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9165740162625899005, guid: ca8c5bb5812263040b4ff6aeab29376c, type: 3}
+      propertyPath: _initialLife
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca8c5bb5812263040b4ff6aeab29376c, type: 3}
 --- !u!1001 &3884057993126453317
@@ -443,6 +451,14 @@ PrefabInstance:
     - target: {fileID: 3884057993345804355, guid: 2f12554efee3f0540a95c94c9f694839, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884057993345804355, guid: 2f12554efee3f0540a95c94c9f694839, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884057993345804355, guid: 2f12554efee3f0540a95c94c9f694839, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f12554efee3f0540a95c94c9f694839, type: 3}
@@ -510,6 +526,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 591348597}
     m_Modifications:
+    - target: {fileID: 4752098280154344262, guid: 59307d5110d665342b2910a05fb4a82a, type: 3}
+      propertyPath: _initialLife
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7718135641985784064, guid: 59307d5110d665342b2910a05fb4a82a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.97
@@ -681,6 +701,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 591348597}
     m_Modifications:
+    - target: {fileID: 4516246856635836727, guid: 739ac61964280f740ab5007e3c1bae60, type: 3}
+      propertyPath: _initialLife
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8699664442645942240, guid: 739ac61964280f740ab5007e3c1bae60, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.52
