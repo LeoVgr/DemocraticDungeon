@@ -16,7 +16,7 @@ public class Assassin : Character
                 HealPotion();
                 break;
             case 1:
-                Action1();
+                BackStab();
                 break;
             case 2:
                 Action2();
@@ -39,9 +39,36 @@ public class Assassin : Character
         ReceiveHeal(healPotion);
     }
 
-    private void Action1()
+    private void BackStab()
     {
-        Busy = false;
+        anim.SetTrigger("BackStab");
+        int numberOfPeopleNearTheBoss = 0;
+        foreach(Character character in CharacterManager.sharedInstance.characters)
+        {
+            if( character.gameObject.name != "Boss" && character.Exposed)
+            {
+                numberOfPeopleNearTheBoss++;
+            }
+        }
+
+        int damage = 0;
+        if (numberOfPeopleNearTheBoss < 4)
+        {
+            damage = 50 + 50 * numberOfPeopleNearTheBoss;
+        }
+        else
+        {
+            damage = 500;
+        }
+
+        foreach (Character character in CharacterManager.sharedInstance.characters)
+        {
+            if (character.gameObject.name == "Boss")
+            {
+                character.ReceiveDamage(damage);
+            }
+        }
+
     }
 
     private void Action2()
