@@ -9,7 +9,8 @@ public class PaladinSound : MonoBehaviour
     public AudioSource actionSounds;
 
     public AudioClip healingLight;
-    public AudioClip divineSmite;
+    public AudioClip divineSmiteSuccess;
+    public AudioClip divineSmiteFail;
     public AudioClip protectAlly;
     public AudioClip taunt;
 
@@ -51,10 +52,17 @@ public class PaladinSound : MonoBehaviour
         actionSounds.Play();
     }
 
-    public void DivineSmiteSound()
+    public void DivineSmiteSuccessSound()
     {
         EffortSound();
-        actionSounds.clip = divineSmite;
+        actionSounds.clip = divineSmiteSuccess;
+        actionSounds.Play();
+    }
+
+    public void DivineSmiteFailSound()
+    {
+        EffortSound();
+        actionSounds.clip = divineSmiteFail;
         actionSounds.Play();
     }
 
