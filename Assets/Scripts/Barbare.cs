@@ -49,9 +49,4 @@ public class Barbare : Character
         Busy = false;
     }
 
-    public void endAction()
-    {
-        Busy = false;
-    }
-
 }

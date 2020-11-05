@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Paladin : Character
 {
+
+    public float healAmount;
+
     public override void PlayAction(int index)
     {
         Busy = true;
         switch (index)
         {
             case 0:
-                Action0();
+                Heal();
                 break;
             case 1:
                 Action1();
@@ -30,8 +33,18 @@ public class Paladin : Character
 
     //Here busy = false because we don't an animation yet, but we should do it as an key event during the animation
 
-    private void Action0()
+    private void Heal()
     {
+        anim.SetTrigger("Heal");
+        foreach(Character character in CharacterManager.sharedInstance.characters)
+        {
+            if(character.gameObject.name == "Boss")
+            {
+                continue;
+            }
+            character.ReceiveHeal(healAmount);
+        }
+
         Busy = false;
     }
 
@@ -48,11 +61,5 @@ public class Paladin : Character
     {
         Busy = false;
     }
-
-    public void endAction()
-    {
-        Busy = false;
-    }
-
 
 }

@@ -49,10 +49,5 @@ public class Assassin : Character
         Busy = false;
     }
 
-    public void endAction()
-    {
-        Busy = false;
-    }
-
 
 }
