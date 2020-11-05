@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    #region "Singleton"
     private static GameManager instance = null;
 
     public static GameManager sharedInstance
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
+    #endregion
 
     #region "Attributs"
     public float selectionTime;
