@@ -42,6 +42,12 @@ MonoBehaviour:
   - setRefresh
   - setRefreshMode
   - afficherMsg
+  - sendingMaster
+  - retrieveVote
+  - sendClasse
+  - receiveClasse
+  - sendHp
+  - sendActions
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

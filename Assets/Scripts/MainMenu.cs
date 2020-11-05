@@ -9,7 +9,8 @@ using Photon.Realtime;
 public class MainMenu : MonoBehaviourPunCallbacks
 {
     //public GameObject roomJoinUI;
-
+    [SerializeField]
+    UIManager ui_manager;
     
     public bool DEBUG_MODE = false;
 
@@ -46,7 +47,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        UIManager.getInstance().activateMenu("start");
+        ui_manager.activateMenu("start");
         /*if (!PhotonNetwork.IsConnected)
         {
             PhotonNetwork.PhotonServerSettings.AppSettings.AppVersion = gameVersion;
@@ -63,22 +64,25 @@ public class MainMenu : MonoBehaviourPunCallbacks
         bool res = false;
         if (mode_choice)
         {
-            nb_votes += nb;
-            if(nb_votes >= 0)
+            if((type == 0 ? (nb_votes_action_1 + nb >= 0) : (nb_votes_action_2 + nb >= 0)))
             {
-                if (type == 0)
-                    nb_votes_action_1 += nb;
-                else
-                    nb_votes_action_2 += nb;
+                nb_votes -= nb;
+                if (nb_votes >= 0 && nb_votes <= nb_member)
+                {
+                    if (type == 0)
+                        nb_votes_action_1 += nb;
+                    else
+                        nb_votes_action_2 += nb;
 
-                res = true;
-            }
-            else
-            {
-                nb_votes = 0;
-                res = false;
+                    res = true;
+                }
+                else
+                {
+                    nb_votes = (nb_votes < 0 ? 0 : nb_member);
+                }
             }
         }
+        Debug.Log("Set vote Main Menu "+res);
         return res;
     }
 
@@ -131,7 +135,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         {
             //side core game
 #if UNITY_ANDROID
-              
+                //setRefreshMode(true);
                 /*if(refresh){
                     UIManager.getInstance().activateMenu((mode_choice ? "choice" : "turn"));
                     refresh = false;
@@ -267,11 +271,12 @@ public class MainMenu : MonoBehaviourPunCallbacks
     void setRefreshMode(bool state)
     {
         mode_choice = state;
-        UIManager.getInstance().activateMenu((mode_choice ? "choice" : "turn"));
+        ui_manager.activateMenu((mode_choice ? "choice" : "turn"));
         if (mode_choice)
         {
             nb_votes = nb_member;
             nb_votes_action_1 = nb_votes_action_2 = 0;
+            ui_manager.addVotes(0);
         }
 
         //refresh = true;
@@ -294,15 +299,17 @@ public class MainMenu : MonoBehaviourPunCallbacks
                     //pv = PhotonView.Get(this);
                     timer_turn = Time.realtimeSinceStartup;
 #if UNITY_ANDROID
-                        UIManager.getInstance().activateMenu("turn");
+                    gameLaunch = true;
+                    setRefreshMode(true);
+                    //UIManager.getInstance().activateMenu("turn");
 #elif UNITY_STANDALONE_WIN
                     pv.RPC("setLaunch", RpcTarget.All, true);
-                    UIManager.getInstance().activateMenu("");
+                    ui_manager.activateMenu("");
 #endif
                 }
                 else
                 {
-                    UIManager.getInstance().refreshNbJoueur(PhotonNetwork.CurrentRoom.PlayerCount);
+                    ui_manager.refreshNbJoueur(PhotonNetwork.CurrentRoom.PlayerCount);
                     #if UNITY_ANDROID
                                 pv.RPC("afficherMsg",RpcTarget.Others,"ceci est un message !");
                     #endif
