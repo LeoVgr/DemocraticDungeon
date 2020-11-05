@@ -97,10 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialLife: 100
   actions:
-  - 1
-  - 2
-  - 3
-  - 4
+  - Boule de feu
 --- !u!95 &3748630854586362046
 Animator:
   serializedVersion: 3

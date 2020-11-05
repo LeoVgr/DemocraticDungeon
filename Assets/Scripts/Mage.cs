@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Mage : Character
 {
+
+    public float fireballDamage;
+
     public override void PlayAction(int index)
     {
         Busy = true;
         switch (index)
         {
             case 0:
-                Action0();
+                Debug.Log("Play " + actions[0]);
+                Fireball();
                 break;
             case 1:
                 Action1();
@@ -28,12 +32,20 @@ public class Mage : Character
         }
     }
 
-    //Here busy = false because we don't an animation yet, but we should do it as an key event during the animation
 
-    private void Action0()
+    private void Fireball()
     {
-        Busy = false;
+        anim.SetTrigger("Fireball");
+        foreach (Character character in CharacterManager.sharedInstance.characters)
+        {
+            if(character.Exposed)
+            {
+                character.ReceiveDamage(fireballDamage);
+            }
+        }
     }
+
+    //Here busy = false because we don't an animation yet, but we should do it as an key event during the animation
 
     private void Action1()
     {
@@ -45,11 +57,6 @@ public class Mage : Character
         Busy = false;
     }
     private void Action3()
-    {
-        Busy = false;
-    }
-
-    public void endAction()
     {
         Busy = false;
     }

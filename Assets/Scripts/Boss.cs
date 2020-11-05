@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Boss : Character
 {
+    protected override void Start()
+    {
+        base.Start();
+        Exposed = true;
+    }
+
     public override void PlayAction(int index)
     {
         Busy = true;
@@ -49,9 +55,5 @@ public class Boss : Character
         Busy = false;
     }
 
-    public void endAction()
-    {
-        Busy = false;
-    }
 
 }
