@@ -101,6 +101,7 @@ public class Archer : Character
 
     private void PomPomGirl()
     {
+        anim.SetTrigger("PomPomGirl");
         for (int i = 0; i < GameManager.sharedInstance.orderedPlayers.Count; i++)
         {
             if (GameManager.sharedInstance.orderedPlayers[i].gameObject.name == "Archer")

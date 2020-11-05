@@ -8,17 +8,17 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected float _initialLife;
 
-    [SerializeField]
-    protected List<string> actions;
+    public List<string> Actions { get; protected set; }
 
     protected Animator anim;
-    public int CountActions { get => actions.Count; }
+    public int CountActions { get => Actions.Count; }
     public bool Busy { get; protected set; }
     public float Life { get; protected set; }
     public bool Exposed { get; protected set; }
     public bool Protected { get; set; }
     public bool CanBeHealed { get; set; }
     public bool Encouraged { get; set; }
+    public bool Invulnerable { get; set; }
 
     [NonSerialized]
     public Character protector = null;
@@ -31,16 +31,8 @@ public abstract class Character : MonoBehaviour
         Protected = false;
         CanBeHealed = false;
         Encouraged = false;
+        Invulnerable = false;
         anim = GetComponent<Animator>();
-    }
-
-    public string GetActionName(int index)
-    {
-        if (index < CountActions)
-        {
-            return actions[index];
-        }
-        return "";
     }
 
     public abstract void PlayAction(int index);
@@ -93,5 +85,6 @@ public abstract class Character : MonoBehaviour
         protector = null;
         Exposed = false;
         Encouraged = false;
+        Invulnerable = false;
     }
 }

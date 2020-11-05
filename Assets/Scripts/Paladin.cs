@@ -83,7 +83,7 @@ public class Paladin : Character
                 {
                     if (character.gameObject.name == classesDamaged[i]) //If the current character is selected, inflict him damage and remove him from the list for optimization
                     {
-                        character.ReceiveDamage(damage);
+                        character.ReceiveDamage((Encouraged) ? divineStrikeFriendlyDamage * 2 : divineStrikeFriendlyDamage);
                         classesDamaged.RemoveAt(i);
                         numberOfPeopleDamaged--;
                         break;
@@ -102,7 +102,7 @@ public class Paladin : Character
         {
             if (character.gameObject.name == "Boss")
             {
-                character.ReceiveDamage(divineStrikeDamage);
+                character.ReceiveDamage((Encouraged)?divineStrikeDamage*2:divineStrikeDamage);
             }
             break;
         }

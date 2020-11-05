@@ -16,7 +16,7 @@ public class Mage : Character
         switch (index)
         {
             case 0:
-                Debug.Log("Play " + actions[0]);
+                Debug.Log("Play " + Actions[0]);
                 Fireball();
                 break;
             case 1:
@@ -43,7 +43,7 @@ public class Mage : Character
         {
             if(character.Exposed || character.gameObject.name == "Boss")
             {
-                character.ReceiveDamage(fireballDamage);
+                character.ReceiveDamage((Encouraged) ? fireballDamage * 2 : fireballDamage);
             }
         }
     }
@@ -102,7 +102,7 @@ public class Mage : Character
         {
             if (character.gameObject.name == "Boss")
             {
-                character.ReceiveDamage(mortalContactDamage);
+                character.ReceiveDamage((Encouraged) ? mortalContactDamage * 2 : mortalContactDamage);
             }
             break;
         }

@@ -19,7 +19,7 @@ public class Assassin : Character
                 BackStab();
                 break;
             case 2:
-                Action2();
+                Avoid();
                 break;
             case 3:
                 Action3();
@@ -65,15 +65,16 @@ public class Assassin : Character
         {
             if (character.gameObject.name == "Boss")
             {
-                character.ReceiveDamage(damage);
+                character.ReceiveDamage((Encouraged) ? damage * 2 : damage);
             }
         }
 
     }
 
-    private void Action2()
+    private void Avoid()
     {
-        Busy = false;
+        anim.SetTrigger("Avoid");
+        Invulnerable = true;
     }
     private void Action3()
     {
