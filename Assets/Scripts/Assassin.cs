@@ -22,7 +22,7 @@ public class Assassin : Character
                 Avoid();
                 break;
             case 3:
-                Action3();
+                Poison();
                 break;
             default:
                 Busy = false;
@@ -76,9 +76,16 @@ public class Assassin : Character
         anim.SetTrigger("Avoid");
         Invulnerable = true;
     }
-    private void Action3()
+    private void Poison()
     {
-        Busy = false;
+        anim.SetTrigger("Poison");
+        foreach (Character character in CharacterManager.sharedInstance.characters)
+        {
+            if (character.gameObject.name == "Boss")
+            {
+                character.TurnPoisoned = 3;
+            }
+        }
     }
 
 

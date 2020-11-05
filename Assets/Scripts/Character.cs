@@ -19,6 +19,7 @@ public abstract class Character : MonoBehaviour
     public bool CanBeHealed { get; set; }
     public bool Encouraged { get; set; }
     public bool Invulnerable { get; set; }
+    public int TurnPoisoned { get; set; }
 
     [NonSerialized]
     public Character protector = null;
@@ -32,6 +33,7 @@ public abstract class Character : MonoBehaviour
         CanBeHealed = false;
         Encouraged = false;
         Invulnerable = false;
+        TurnPoisoned = 0;
         anim = GetComponent<Animator>();
     }
 
@@ -80,6 +82,22 @@ public abstract class Character : MonoBehaviour
 
     public void Reset()
     {
+        if (TurnPoisoned > 0)
+        {
+            TurnPoisoned--;
+            switch(UnityEngine.Random.Range(0,3))
+            {
+                case 0:
+                    ReceiveDamage(0);
+                    break;
+                case 1:
+                    ReceiveDamage(50);
+                    break;
+                case 2:
+                    ReceiveDamage(100);
+                    break;
+            }
+        }
         CanBeHealed = true;
         Protected = false;
         protector = null;
