@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
 {
 
     #region "Attributs"
-    public GameObject Ui;
     public float selectionTime;
     public List<GameObject> players;
     public List<GameObject> orderedPlayers;
@@ -93,11 +92,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region "GameOptions"
-    public void StartNewGame()
-    {
-        Ui.SetActive(false);
-        currentPhase = Phase.Positioning;
-    }
 
     public void GameOver()
     {
