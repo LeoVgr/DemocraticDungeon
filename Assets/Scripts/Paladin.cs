@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class Paladin : Character
 {
-
+    [Header("Exemple : 5 = 1/5 probability")]
+    public int badDivineStrikeProbability = 5;
     public float healAmount;
+    public float divineStrikeDamage;
+    public float divineStrikeFriendlyDamage;
 
     public override void PlayAction(int index)
     {
@@ -19,10 +24,10 @@ public class Paladin : Character
                 DivineStrike();
                 break;
             case 2:
-                Action2();
+                Protect();
                 break;
             case 3:
-                Action3();
+                Taunt();
                 break;
             default:
                 Busy = false;
@@ -44,26 +49,102 @@ public class Paladin : Character
             }
             character.ReceiveHeal(healAmount);
         }
-
-        Busy = false;
     }
 
     private void DivineStrike()
     {
-        if (Random.Range(0,5) == 0)
+        if (Random.Range(0, badDivineStrikeProbability) == 0) // Chance to get bad result
         {
+            anim.SetTrigger("BadDivineStrike");
+            //Damage the paladin
+            ReceiveDamage(50);
+            //Calculate how many people are going to get damaged
+            int numberOfPeopleDamaged = Random.Range(2, 5);
+            float damage = divineStrikeFriendlyDamage / (float)numberOfPeopleDamaged;
+            //Choose who is going to get hurt
+            List<string> classesDamaged = new List<string>(numberOfPeopleDamaged);
+            List<string> classes = new List<string>(4);
+            classes.Add("Archer");
+            classes.Add("Assassin");
+            classes.Add("Barbare");
+            classes.Add("Mage");
+            
+            for(int i = 0; i < numberOfPeopleDamaged; i++)
+            {
+                int rand = Random.Range(0, 4 - i);
+                classesDamaged.Add(classes[rand]);
+                classes.RemoveAt(rand);
+            }
 
+            //Hurt the ones who get choosen
+            foreach(Character character in CharacterManager.sharedInstance.characters)
+            {
+                for(int i = 0; i < numberOfPeopleDamaged; i++)
+                {
+                    if (character.gameObject.name == classesDamaged[i]) //If the current character is selected, inflict him damage and remove him from the list for optimization
+                    {
+                        character.ReceiveDamage(damage);
+                        classesDamaged.RemoveAt(i);
+                        numberOfPeopleDamaged--;
+                        break;
+                    }
+                }
+                if (numberOfPeopleDamaged == 0)
+                {
+                    break;
+                }
+            }
+            return;
         }
-        Busy = false;
+        //
+        anim.SetTrigger("GoodDivineStrike");
+        foreach(Character character in CharacterManager.sharedInstance.characters)
+        {
+            if (character.gameObject.name == "Boss")
+            {
+                character.ReceiveDamage(divineStrikeDamage);
+            }
+            break;
+        }
     }
 
-    private void Action2()
+    private void Protect()
     {
-        Busy = false;
+        anim.SetTrigger("Protect");
+        Character protect = null;
+        float life = Mathf.Infinity;
+        foreach(Character character in CharacterManager.sharedInstance.characters)
+        {
+            if (character.gameObject.name != "Boss" && character.gameObject.name != "Paladin" && character.Life < life)
+            {
+                life = character.Life;
+                protect = character;
+            }
+        }
+
+        if (protect == null)
+        {
+            Debug.LogError("Error in Protect, Paladin.cs");
+            return;
+        }
+        
+        protect.Protected = true;
+        protect.protector = this;
     }
-    private void Action3()
+
+    private void Taunt()
     {
-        Busy = false;
+        anim.SetTrigger("Taunt");
+        foreach (Character character in CharacterManager.sharedInstance.characters)
+        {
+            if (character.gameObject.name == "Boss")
+            {
+                ((Boss)character).Taunt(this);
+            }
+            break;
+        }
+
     }
+
 
 }

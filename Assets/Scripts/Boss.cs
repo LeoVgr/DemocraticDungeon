@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Boss : Character
 {
+    private Character target = null;
+
     protected override void Start()
     {
         base.Start();
@@ -55,5 +57,9 @@ public class Boss : Character
         Busy = false;
     }
 
+    public void Taunt(Character character)
+    {
+        target = character;
+    }
 
 }

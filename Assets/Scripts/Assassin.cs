@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Assassin : Character
 {
+
+    public float healPotion;
+
     public override void PlayAction(int index)
     {
         Busy = true;
         switch (index)
         {
             case 0:
-                Action0();
+                HealPotion();
                 break;
             case 1:
                 Action1();
@@ -30,9 +33,10 @@ public class Assassin : Character
 
     //Here busy = false because we don't an animation yet, but we should do it as an key event during the animation
 
-    private void Action0()
+    private void HealPotion()
     {
-        Busy = false;
+        anim.SetTrigger("HealPotion");
+        ReceiveHeal(healPotion);
     }
 
     private void Action1()

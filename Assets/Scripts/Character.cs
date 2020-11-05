@@ -16,7 +16,7 @@ public abstract class Character : MonoBehaviour
     public bool Busy { get; protected set; }
     public float Life { get; protected set; }
     public bool Exposed { get; protected set; }
-    public bool Protected { get; protected set; }
+    public bool Protected { get; set; }
 
     [NonSerialized]
     public Character protector = null;
