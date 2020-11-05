@@ -17,6 +17,8 @@ public abstract class Character : MonoBehaviour
     public float Life { get; protected set; }
     public bool Exposed { get; protected set; }
     public bool Protected { get; set; }
+    public bool CanBeHealed { get; set; }
+    public bool Encouraged { get; set; }
 
     [NonSerialized]
     public Character protector = null;
@@ -27,6 +29,8 @@ public abstract class Character : MonoBehaviour
         Life = _initialLife;
         Exposed = false;
         Protected = false;
+        CanBeHealed = false;
+        Encouraged = false;
         anim = GetComponent<Animator>();
     }
 
@@ -45,7 +49,6 @@ public abstract class Character : MonoBehaviour
     {
         if (Protected && protector != null)
         {
-            Protected = false;
             protector.ReceiveDamage(amount / 2);
             return;
         }
@@ -59,13 +62,17 @@ public abstract class Character : MonoBehaviour
 
     public void ReceiveHeal(float amount)
     {
-        if (Life + amount > _initialLife)
+        if (CanBeHealed)
         {
-            Life = _initialLife;
-            return;
-        }
+            if (Life + amount > _initialLife)
+            {
+                Life = _initialLife;
+                return;
+            }
 
-        Life += amount;
+            Life += amount;
+        }
+        
     }
 
     private void Die()
@@ -77,5 +84,14 @@ public abstract class Character : MonoBehaviour
     public void EndAction()
     {
         Busy = false;
+    }
+
+    public void Reset()
+    {
+        CanBeHealed = true;
+        Protected = false;
+        protector = null;
+        Exposed = false;
+        Encouraged = false;
     }
 }
