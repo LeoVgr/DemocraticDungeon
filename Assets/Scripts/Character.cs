@@ -18,6 +18,7 @@ public abstract class Character : MonoBehaviour
     public bool Exposed { get; protected set; }
     public bool Protected { get; protected set; }
     public bool CanBeHealed { get; set; }
+    public bool Encouraged { get; set; }
 
     [NonSerialized]
     public Character protector = null;
@@ -29,6 +30,7 @@ public abstract class Character : MonoBehaviour
         Exposed = false;
         Protected = false;
         CanBeHealed = false;
+        Encouraged = false;
         anim = GetComponent<Animator>();
     }
 
@@ -90,5 +92,6 @@ public abstract class Character : MonoBehaviour
         Protected = false;
         protector = null;
         Exposed = false;
+        Encouraged = false;
     }
 }

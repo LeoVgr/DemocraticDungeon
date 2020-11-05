@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager instance = null;
+
+    public static GameManager sharedInstance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = GameObject.FindObjectOfType<GameManager>();
+            }
+            return instance;
+        }
+    }
 
     #region "Attributs"
     public float selectionTime;
     public List<Character> players;
-    public Queue<Character> orderedPlayers;
+    public List<Character> orderedPlayers;
 
     private float timer = 0;
     private Phase currentPhase;
@@ -26,7 +39,7 @@ public class GameManager : MonoBehaviour
     #region "Events"
     private void Awake()
     {
-        orderedPlayers = new Queue<Character>();
+        orderedPlayers = new List<Character>();
         currentPhase = Phase.Menu;
 
     }
@@ -67,14 +80,14 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    if (!orderedPlayers.Peek().Busy)
+                    if (!orderedPlayers[0].Busy)
                     {
-                        Character heroePlaying = orderedPlayers.Peek();
+                        Character heroePlaying = orderedPlayers[0];
                         heroePlaying.PlayAction(0);
                     }
                     else
                     {
-                        orderedPlayers.Dequeue();
+                        orderedPlayers.RemoveAt(0);
                     }
                 }
                                          
@@ -103,7 +116,7 @@ public class GameManager : MonoBehaviour
                 randomIndex = Random.Range(0, players.Count);
             }
 
-            orderedPlayers.Enqueue(players[randomIndex]);
+            orderedPlayers.Add(players[randomIndex]);
         }
     }
     #endregion
