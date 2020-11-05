@@ -58,16 +58,26 @@ public class GameManager : MonoBehaviour
                 break;
 
             case Phase.ActionsResolution:
-                if (!orderedPlayers.Peek().Busy)
+                if(orderedPlayers.Count == 0)
                 {
-                    Character heroePlaying = orderedPlayers.Peek();
-                    heroePlaying.PlayAction(0);
+                    foreach (var heroe in players)
+                    {
+                        heroe.Reset();
+                    }
                 }
                 else
                 {
-                    orderedPlayers.Dequeue();
+                    if (!orderedPlayers.Peek().Busy)
+                    {
+                        Character heroePlaying = orderedPlayers.Peek();
+                        heroePlaying.PlayAction(0);
+                    }
+                    else
+                    {
+                        orderedPlayers.Dequeue();
+                    }
                 }
-                                            
+                                         
                 break;
 
             default:
