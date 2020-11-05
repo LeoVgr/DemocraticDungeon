@@ -89,9 +89,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Text attaque_2_desc_txt;
     [SerializeField]
-    Text alerte_attaque_1_txt;
+    GameObject alerte_attaque_1;
     [SerializeField]
-    Text alerte_attaque_2_txt;
+    GameObject alerte_attaque_2;
 
     [SerializeField]
     Image im_health;
@@ -153,13 +153,18 @@ public class UIManager : MonoBehaviour
     public void updateActionChoice(string [] action_names,bool [] alerte)
     {
         attaque_1_title_txt.text = action_names[0];
-        //attaque_1_title_txt.text = action_names[0];
-        alerte_attaque_1_txt.enabled = alerte[0];
+        attaque_1_desc_txt.text = photon_manager.description_actions[action_names[0]];
+        alerte_attaque_1.SetActive(alerte[0]);
         if(action_names.Length >= 2)
         {
+            bt_attaque_2.enabled = true;
             attaque_2_title_txt.text = action_names[1];
-            //attaque_2_title_txt.text = action_names[1];
-            alerte_attaque_2_txt.enabled = alerte[1];
+            attaque_2_desc_txt.text = photon_manager.description_actions[action_names[1]];
+            alerte_attaque_2.SetActive(alerte[1]);
+        }
+        else
+        {
+            bt_attaque_2.enabled = false;
         }
     }
 
@@ -204,7 +209,11 @@ public class UIManager : MonoBehaviour
         bool state = photon_manager.isConnecting;
         if (state)
         {
+#if UNITY_ANDROID
             activateMenu("select");
+#elif UNITY_STANDALONE_WIN
+            photon_manager.connectMasterClient();
+#endif
         }
     }
     public void clickColor(string name)
@@ -243,11 +252,11 @@ public class UIManager : MonoBehaviour
     public void clickQuit()
     {
         photon_manager.disconnected();
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#else
               Application.Quit();
-        #endif
+#endif
     }
 
     public void updateHp(float poucent)

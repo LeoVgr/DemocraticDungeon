@@ -1428,8 +1428,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui_manager: {fileID: 726119320}
   DEBUG_MODE: 0
-  NB_PLAYERS_MAX: 1
-  TURN_TIME: 20
+  NB_PLAYERS_MAX: 2
+  TURN_TIME: 10
   isConnecting: 0
   mode_choice: 0
 --- !u!114 &374874866
@@ -2347,9 +2347,11 @@ MonoBehaviour:
   classe_txt: {fileID: 887181146}
   team_txt: {fileID: 747061697}
   attaque_1_title_txt: {fileID: 1837665306}
-  attaque_1_desc_txt: {fileID: 413967403}
+  attaque_1_desc_txt: {fileID: 862330607}
   attaque_2_title_txt: {fileID: 149746852}
   attaque_2_desc_txt: {fileID: 413967403}
+  alerte_attaque_1: {fileID: 693420299}
+  alerte_attaque_2: {fileID: 425533139}
   im_health: {fileID: 972830620}
 --- !u!1 &747061695
 GameObject:

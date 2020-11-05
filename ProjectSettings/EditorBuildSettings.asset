@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Julien.unity
+    guid: ff4da470b06cc7748835a0336e8797da
   m_configObjects: {}

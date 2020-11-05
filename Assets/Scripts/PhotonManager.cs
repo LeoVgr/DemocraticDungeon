@@ -34,6 +34,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //debug
     float[] lifes_array = {10.0f,80.0f, 30.0f , 20.0f , 60.0f , 70.0f };
     string[] classes_array = { "Assassin","Archer", "Mage", "Paladin","Barbare","Boss" };
+    string[] actions_array = { "coup de tete", "coup de pied", "coup de coude", "coup de genoux" };
+    int cmpt = 0;
+    public Dictionary<string, string> description_actions;
     //List<float> lifes = new List<float>();
     //List<string> classes = new List<string>();
 
@@ -56,6 +59,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         players = new Dictionary<string, int>();
 
         //debug
+        description_actions = new Dictionary<string, string>();
+        for(int i = 0; i < actions_array.Length; i++)
+        {
+            description_actions.Add(actions_array[i], "description " + i);
+        }
         //lifes.AddRange(lifes_array);
         //classes.AddRange(classes_array);
     }
@@ -67,6 +75,58 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log("Connecting to Photon Network");
 
         ConnectToPhoton();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //wait players
+        if (!gameLaunch)
+        {
+            LaunchTheGame();
+        }
+        //core game here
+        else
+        {
+            //side core game
+#if UNITY_ANDROID
+            //setRefreshMode(true);
+            //ui_manager.updateHp(life/100.0f);
+            //life -= Time.deltaTime;
+            
+            /*if(refresh){
+                UIManager.getInstance().activateMenu((mode_choice ? "choice" : "turn"));
+                refresh = false;
+                //pv.RPC("setRefresh",RpcTarget.All,false);
+                
+            }*/
+#elif UNITY_STANDALONE_WIN
+            Debug.Log("Tourne sur la machine centrale !");
+            if ((Time.realtimeSinceStartup - timer_turn) > TURN_TIME)
+            {
+                timer_turn = Time.realtimeSinceStartup;
+                mode_choice = !mode_choice;
+                //pv.RPC("setRefreshMode", RpcTarget.All, !mode_choice);
+                pv.RPC("retrieveVote", RpcTarget.Others);
+                pv.RPC("setRefreshMode", RpcTarget.Others, mode_choice);
+                if (mode_choice)
+                {
+                    foreach(string name in players.Keys)
+                    {
+                        string[] array = { actions_array[cmpt%actions_array.Length],actions_array[(cmpt+1) % actions_array.Length] };
+                        bool[] alerte = { (cmpt%3!=0), ((cmpt+1) % 3 != 0) };
+                        updateActions(name, actions_array, alerte);
+                    }
+                    cmpt++;
+                }
+
+                //RpcTarget.Others
+                refresh = false;
+                Debug.Log("Changement de mode");
+            }
+#endif
+
+        }
     }
 
     public void setVotes(int type)
@@ -106,6 +166,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         }
         return res;
     }*/
+
+    public void connectMasterClient()
+    {
+                ui_manager.activateMenu("wait");
+                name = "MasterClient";
+                JoinRoom(name);
+    }
 
 
     public void updateActions(string name,string [] actions,bool [] alerte)
@@ -255,49 +322,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         return res;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //wait players
-        if (!gameLaunch)
-        {
-            LaunchTheGame();
-        }
-        //core game here
-        else
-        {
-            //side core game
-#if UNITY_ANDROID
-            //setRefreshMode(true);
-            ui_manager.updateHp(life/100.0f);
-            life -= Time.deltaTime;
-            associateClasse(classes_array);
-            updateHp(lifes_array);
-            /*if(refresh){
-                UIManager.getInstance().activateMenu((mode_choice ? "choice" : "turn"));
-                refresh = false;
-                //pv.RPC("setRefresh",RpcTarget.All,false);
-                
-            }*/
-#elif UNITY_STANDALONE_WIN
-            Debug.Log("Tourne sur la machine centrale !");
-                if ((Time.realtimeSinceStartup - timer_turn) > TURN_TIME)
-                {
-                    timer_turn = Time.realtimeSinceStartup;
-                    mode_choice = !mode_choice;
-                    //pv.RPC("setRefreshMode", RpcTarget.All, !mode_choice);
-                    pv.RPC("retrieveVote",RpcTarget.Others);
-                    pv.RPC("setRefreshMode", RpcTarget.Others, mode_choice);
-                    
-                    //RpcTarget.Others
-                refresh = false;
-                    Debug.Log("Changement de mode");
-                }
-#endif
-
-        }
-    }
-
     public void disconnected()
     {
         if (isConnecting)
@@ -380,15 +404,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             {
                 if (PhotonNetwork.CurrentRoom.PlayerCount >= NB_PLAYERS_MAX)
                 {
-                    #if UNITY_ANDROID
+#if UNITY_ANDROID
                     //debug
-                    //gameLaunch = true;
-                    //setRefreshMode(true);
+                    /*gameLaunch = true;
+                    setRefreshMode(true);
+                    associateClasse(classes_array);
+                    updateHp(lifes_array);*/
                     //real script
                     ui_manager.activateMenu("turn");
 #elif UNITY_STANDALONE_WIN
                     timer_turn = Time.realtimeSinceStartup;
                     pv.RPC("setLaunch", RpcTarget.All, true);
+                    associateClasse(classes_array);
                     pv.RPC("setRefreshMode", RpcTarget.Others, mode_choice);
                     ui_manager.activateMenu("");
                     foreach(int k in PhotonNetwork.CurrentRoom.Players.Keys)
