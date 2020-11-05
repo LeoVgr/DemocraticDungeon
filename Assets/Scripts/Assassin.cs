@@ -14,14 +14,18 @@ public class Assassin : Character
         {
             case 0:
                 HealPotion();
+                DropAction(0);
                 break;
             case 1:
                 BackStab();
+                DropAction(1);
                 break;
             case 2:
                 Avoid();
+                DropAction(2);
                 break;
             case 3:
+                DropAction(3);
                 Poison();
                 break;
             default:
@@ -42,6 +46,7 @@ public class Assassin : Character
     private void BackStab()
     {
         anim.SetTrigger("BackStab");
+        Exposed = true;
         int numberOfPeopleNearTheBoss = 0;
         foreach(Character character in CharacterManager.sharedInstance.characters)
         {

@@ -19,15 +19,19 @@ public class Boss : Character
         {
             case 0:
                 Action0();
+                DropAction(0);
                 break;
             case 1:
                 Action1();
+                DropAction(1);
                 break;
             case 2:
                 Action2();
+                DropAction(2);
                 break;
             case 3:
                 Action3();
+                DropAction(3);
                 break;
             default:
                 Busy = false;

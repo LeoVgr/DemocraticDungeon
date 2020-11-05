@@ -5,7 +5,8 @@ using UnityEngine;
 public class Mage : Character
 {
 
-    public float fireballDamage;
+    public float fireballDamageOnBoss;
+    public float fireballDamageOnTeammate;
     public float healAmount;
     public float mortalContactDamage;
     public int numberOfPeopleHealed = 2;
@@ -18,15 +19,19 @@ public class Mage : Character
             case 0:
                 Debug.Log("Play " + Actions[0]);
                 Fireball();
+                DropAction(0);
                 break;
             case 1:
                 Chloroquine();
+                DropAction(1);
                 break;
             case 2:
-                Action2();
+                ImmediateMemory();
+                DropAction(2);
                 break;
             case 3:
                 MortalContact();
+                DropAction(3);
                 break;
             default:
                 Busy = false;
@@ -41,9 +46,13 @@ public class Mage : Character
         anim.SetTrigger("Fireball");
         foreach (Character character in CharacterManager.sharedInstance.characters)
         {
-            if(character.Exposed || character.gameObject.name == "Boss")
+            if(character.gameObject.name == "Boss")
             {
-                character.ReceiveDamage((Encouraged) ? fireballDamage * 2 : fireballDamage);
+                character.ReceiveDamage((Encouraged) ? fireballDamageOnBoss * 2 : fireballDamageOnBoss);
+            }
+            if (character.Exposed)
+            {
+                character.ReceiveDamage((Encouraged) ? fireballDamageOnTeammate * 2 : fireballDamageOnTeammate);
             }
         }
     }
@@ -90,9 +99,12 @@ public class Mage : Character
         return;
     }
 
-    private void Action2()
+    private void ImmediateMemory()
     {
-        Busy = false;
+        foreach (var heroe in CharacterManager.sharedInstance.characters)
+        {
+            heroe.Memoried = true;
+        }
     }
 
     private void MortalContact()

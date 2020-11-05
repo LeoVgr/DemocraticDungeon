@@ -19,15 +19,19 @@ public class Paladin : Character
         {
             case 0:
                 Heal();
+                DropAction(0);
                 break;
             case 1:
                 DivineStrike();
+                DropAction(1);
                 break;
             case 2:
                 Protect();
+                DropAction(2);
                 break;
             case 3:
                 Taunt();
+                DropAction(3);
                 break;
             default:
                 Busy = false;
