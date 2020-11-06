@@ -21,7 +21,6 @@ public class OrderUI : MonoBehaviour
 
     [SerializeField]
     private List<Transform> characterIcons;
-    private float index = 0;
 
     [SerializeField]
     private float offsetY = 0.12f;
