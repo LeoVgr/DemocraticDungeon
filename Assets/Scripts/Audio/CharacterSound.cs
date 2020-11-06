@@ -14,6 +14,7 @@ public class CharacterSound : MonoBehaviour
 
     public AudioSource characterSounds;
 
+    public bool effortEnabled = true;
     public AudioClip[] effortSounds;
     public AudioClip[] hurtSounds;
     public AudioClip deathSound;
@@ -54,8 +55,11 @@ public class CharacterSound : MonoBehaviour
 
     public void EffortSound()
     {
-        characterSounds.clip = effortSounds[UnityEngine.Random.Range(0, effortSounds.Length)];
-        characterSounds.Play();
+        if (effortEnabled)
+        {
+            characterSounds.clip = effortSounds[UnityEngine.Random.Range(0, effortSounds.Length)];
+            characterSounds.Play();
+        }
     }
 
     public void VictorySound()

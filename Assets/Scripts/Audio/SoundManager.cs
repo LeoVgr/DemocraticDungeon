@@ -15,21 +15,19 @@ public class SoundManager : MonoBehaviour
     public AudioSource bossaMusicSource;
     public AudioClip bossaMusic;
 
-    public float crossfadeFactor;
-
-    [Header("Ambience")]
+    /*[Header("Ambience")]
 
     public AudioSource ambSource;
     public AudioClip bed;
-    public AudioClip[] emitters;
+    public AudioClip[] emitters;*/
 
     [Header("UI")]
 
     public AudioSource interfaceSounds;
-    public AudioClip timer;
+    //public AudioClip timer;
     public AudioClip gameOverSound;
     public AudioClip winGameSound;
-    public AudioClip startGameSound;
+    //public AudioClip startGameSound;
     public AudioClip tapeUp;
     public AudioClip tapeDown;
 
@@ -41,8 +39,8 @@ public class SoundManager : MonoBehaviour
         bossaMusicSource.loop = true;
         bossaMusicSource.playOnAwake = false;
 
-        ambSource.loop = true;
-        ambSource.playOnAwake = false;
+        //ambSource.loop = true;
+        //ambSource.playOnAwake = false;
 
         epicMusicSource.clip = epicMusic;
         epicMusicSource.volume = 0f;
@@ -52,8 +50,8 @@ public class SoundManager : MonoBehaviour
         bossaMusicSource.volume = 0f;
         bossaMusicSource.Play();
 
-        ambSource.clip = bed;
-        ambSource.Play();
+        //ambSource.clip = bed;
+        //ambSource.Play();
     }
     
     public void IntroEpic()
