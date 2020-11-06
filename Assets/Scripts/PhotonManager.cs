@@ -28,8 +28,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public Dictionary<string, int> players;
 
-    int id_color;
-    float life = 100.0f;
+    public int id_color;
+    public float life = 100.0f;
 
     //debug
     float[] lifes_array = {10.0f,80.0f, 30.0f , 20.0f , 60.0f , 70.0f };

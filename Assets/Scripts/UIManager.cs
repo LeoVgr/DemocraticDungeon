@@ -94,6 +94,15 @@ public class UIManager : MonoBehaviour
     GameObject alerte_attaque_2;
 
     [SerializeField]
+    GameObject action1;
+    [SerializeField]
+    GameObject action1_contour;
+    [SerializeField]
+    GameObject action2;
+    [SerializeField]
+    GameObject action2_contour;
+
+    [SerializeField]
     Image im_health;
     float hp_max_px;
 
@@ -152,19 +161,29 @@ public class UIManager : MonoBehaviour
 
     public void updateActionChoice(string [] action_names,bool [] alerte)
     {
-        attaque_1_title_txt.text = action_names[0];
-        attaque_1_desc_txt.text = photon_manager.description_actions[action_names[0]];
-        alerte_attaque_1.SetActive(alerte[0]);
-        if(action_names.Length >= 2)
+        if(photon_manager.life > 0)
         {
-            bt_attaque_2.enabled = true;
-            attaque_2_title_txt.text = action_names[1];
-            attaque_2_desc_txt.text = photon_manager.description_actions[action_names[1]];
-            alerte_attaque_2.SetActive(alerte[1]);
+            attaque_1_title_txt.text = action_names[0];
+            attaque_1_desc_txt.text = photon_manager.description_actions[action_names[0]];
+            alerte_attaque_1.SetActive(alerte[0]);
+            if (action_names.Length >= 2)
+            {
+                bt_attaque_2.enabled = true;
+                attaque_2_title_txt.text = action_names[1];
+                attaque_2_desc_txt.text = photon_manager.description_actions[action_names[1]];
+                alerte_attaque_2.SetActive(alerte[1]);
+            }
+            else
+            {
+                bt_attaque_2.enabled = false;
+            }
         }
         else
         {
-            bt_attaque_2.enabled = false;
+            action1.SetActive(false);
+            action2.SetActive(false);
+            action1_contour.SetActive(false);
+            action2_contour.SetActive(false);
         }
     }
 

@@ -1432,6 +1432,8 @@ MonoBehaviour:
   TURN_TIME: 10
   isConnecting: 0
   mode_choice: 0
+  id_color: 0
+  life: 100
 --- !u!114 &374874866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2352,6 +2354,10 @@ MonoBehaviour:
   attaque_2_desc_txt: {fileID: 413967403}
   alerte_attaque_1: {fileID: 693420299}
   alerte_attaque_2: {fileID: 425533139}
+  action1: {fileID: 1689595184}
+  action1_contour: {fileID: 113945047}
+  action2: {fileID: 1716340994}
+  action2_contour: {fileID: 1930599112}
   im_health: {fileID: 972830620}
 --- !u!1 &747061695
 GameObject:
