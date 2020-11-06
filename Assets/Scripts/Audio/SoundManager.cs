@@ -53,7 +53,32 @@ public class SoundManager : MonoBehaviour
         //ambSource.clip = bed;
         //ambSource.Play();
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            IntroEpic();
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            EpicToBossaMusic();
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            BossaToEpicMusic();
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            GameOverSound();
+        }
+        if(Input.GetKeyDown(KeyCode.F5))
+        {
+            WinSound();
+        }
+
+    }
+
     public void IntroEpic()
     {
         StartCoroutine(StartFade(epicMusicSource, 2f, 1f));

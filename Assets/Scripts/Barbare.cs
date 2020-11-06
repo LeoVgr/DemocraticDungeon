@@ -49,40 +49,35 @@ public class Barbare : Character
         anim.SetTrigger("KnockOut");
         Exposed = true;
         StartCoroutine(GoToTarget(meleePosition.position, transform));
-        Character boss = CharacterManager.sharedInstance.characters[0];
 
-        foreach (var item in CharacterManager.sharedInstance.characters)
+        foreach (var boss in CharacterManager.sharedInstance.characters)
         {
-            if(item.gameObject.name == "Boss")
+            if(boss.gameObject.name == "Boss")
             {
-                boss = item;
+                if (Life > 300)
+                {
+                    boss.ReceiveDamage((Encouraged) ? 100 * 2 : 100);
+                }
+                else if (Life <= 300 && Life > 200)
+                {
+                    boss.ReceiveDamage((Encouraged) ? 150 * 2 : 150);
+                }
+                else if (Life <= 200 && Life > 100)
+                {
+                    boss.ReceiveDamage((Encouraged) ? 200 * 2 : 200);
+                }
+                else if (Life <= 100 && Life > 20)
+                {
+                    boss.ReceiveDamage((Encouraged) ? 300 * 2 : 300);
+                }
+                else if (Life <= 50)
+                {
+                    boss.ReceiveDamage((Encouraged) ? 500 * 2 : 500);
+                }
             }
         }
         
-        if(Life <=400 && Life >300)
-        {
-            boss.ReceiveDamage((Encouraged) ? 100 * 2 : 100);
-        }
 
-        if (Life <= 300 && Life > 200)
-        {
-            boss.ReceiveDamage((Encouraged) ? 150 * 2 : 150);
-        }
-
-        if (Life <= 200 && Life > 100)
-        {
-            boss.ReceiveDamage((Encouraged) ? 200 * 2 : 200);
-        }
-
-        if (Life <= 100 && Life > 20)
-        {
-            boss.ReceiveDamage((Encouraged) ? 300 * 2 : 300);
-        }
-
-        if (Life <= 50)
-        {
-            boss.ReceiveDamage((Encouraged) ? 500 * 2 : 500);
-        }
     }
 
     private void HeadButt()
@@ -104,20 +99,22 @@ public class Barbare : Character
     private void BeastlyStrike()
     {
         anim.SetTrigger("BeastlyStrike");
-        Character boss;
-        foreach (var heroe in GameManager.sharedInstance.orderedPlayers)
-        {
-            if(heroe.gameObject.name == "Boss")
-            {
-                boss = heroe;
-                GameManager.sharedInstance.orderedPlayers.Remove(boss);
-                GameManager.sharedInstance.orderedPlayers.Add(boss);
+        Exposed = true;
+        //Character boss;
+        //Exposed = true;
+        //foreach (var heroe in GameManager.sharedInstance.orderedPlayers)
+        //{
+        //    if(heroe.gameObject.name == "Boss")
+        //    {
+        //        boss = heroe;
+        //        GameManager.sharedInstance.orderedPlayers.Remove(boss);
+        //        GameManager.sharedInstance.orderedPlayers.Add(boss);
 
                 
 
-            }
-        }
-        RemainingActions.Remove(Actions[Random.Range(0,RemainingActions.Count)]);
+        //    }
+        //}
+        //RemainingActions.Remove(Actions[Random.Range(0,RemainingActions.Count)]);
     }
 
 }

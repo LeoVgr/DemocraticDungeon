@@ -38,7 +38,7 @@ public class OrderUI : MonoBehaviour
         }
         for (int i = 0; i < orderedList.Count; i++)
         {
-           // PlaceIcon(orderedList[i].Team, i);
+           PlaceIcon(orderedList[i].Team, i);
         }
     }
 

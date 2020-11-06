@@ -22,7 +22,8 @@ public abstract class Character : MonoBehaviour
     public Dictionary<string, string> RemainingActions { get; protected set; }
     public Dictionary<string, string> ProposalActions { get; protected set; }
 
-    protected Transform initialPosition = null;
+    [SerializeField]
+    protected Vector3 initialPosition = new Vector3();
     [SerializeField]
     protected Transform meleePosition = null;
     public int actionToPlay = -1;
@@ -31,6 +32,7 @@ public abstract class Character : MonoBehaviour
     public int CountActions { get => Actions.Count; }
     public bool Busy { get; protected set; }
     public float Life { get; protected set; }
+    [SerializeField]
     public bool Exposed { get; protected set; }
     public bool Protected { get; set; }
     public bool CanBeHealed { get; set; }
@@ -43,22 +45,22 @@ public abstract class Character : MonoBehaviour
     [NonSerialized]
     public Character protector = null;
 
-    protected virtual void Awake()
-    {
-        ActionsDescription = new Dictionary<string, string>();
-        ProposalActions = new Dictionary<string, string>();
-        RemainingActions = new Dictionary<string, string>();
-        GameManager.sharedInstance.AllActions = new Dictionary<string, string>();
-        Actions = new List<string>();
+    //protected void Awake()
+    //{
+    //    ActionsDescription = new Dictionary<string, string>();
+    //    ProposalActions = new Dictionary<string, string>();
+    //    RemainingActions = new Dictionary<string, string>();
+    //    GameManager.sharedInstance.AllActions = new Dictionary<string, string>();
+    //    Actions = new List<string>();
 
-        for (int i=0; i< descActions.Count; i++)
-        {
-            ActionsDescription.Add(nomActions[i], descActions[i]);
-            Actions.Add(nomActions[i]);
+    //    for (int i=0; i< descActions.Count; i++)
+    //    {
+    //        ActionsDescription.Add(nomActions[i], descActions[i]);
+    //        Actions.Add(nomActions[i]);
            
-        }
-        RemainingActions = ActionsDescription;
-    }
+    //    }
+    //    RemainingActions = ActionsDescription;
+    //}
 
     protected virtual void Start()
     {
@@ -66,7 +68,7 @@ public abstract class Character : MonoBehaviour
         Life = _initialLife;
         Exposed = false;
         Protected = false;
-        CanBeHealed = false;
+        CanBeHealed = true;
         Encouraged = false;
         Invulnerable = false;
         Memoried = false;
@@ -75,13 +77,14 @@ public abstract class Character : MonoBehaviour
         anim.SetFloat("Life", Life);
         hpBar = GetComponentInChildren<HP>();
         sounds = GetComponent<CharacterSound>();
-        initialPosition = transform;
+        initialPosition = transform.position;
     }
 
     public abstract void PlayAction(int index);
 
     public void ReceiveDamage(float amount)
     {
+        Debug.Log(amount + " " + Life);
         if (Protected && protector != null)
         {
             protector.ReceiveDamage(amount / 2);
@@ -90,12 +93,12 @@ public abstract class Character : MonoBehaviour
         Life -= amount;
         hpBar.CalculatePosition(Life, _initialLife);
         anim.SetFloat("Life", Life);
-        List<float> lifes = new List<float>();
-        foreach (var character in CharacterManager.sharedInstance.characters)
-        {
-            lifes.Add(character.Life);
-        }
-        GameManager.sharedInstance.photonManager.updateHp(lifes.ToArray());
+        //List<float> lifes = new List<float>();
+        //foreach (var character in CharacterManager.sharedInstance.characters)
+        //{
+        //    lifes.Add(character.Life);
+        //}
+        //GameManager.sharedInstance.photonManager.updateHp(lifes.ToArray());
         if (Life < 0)
         {
             Die();
@@ -112,9 +115,11 @@ public abstract class Character : MonoBehaviour
     {
         if (CanBeHealed)
         {
+
             if (Life + amount > _initialLife)
             {
                 Life = _initialLife;
+                hpBar.CalculatePosition(Life, _initialLife);
                 return;
             }
 
@@ -161,7 +166,7 @@ public abstract class Character : MonoBehaviour
         if (Exposed)
         {
             Exposed = false;
-            StartCoroutine(GoToTarget(initialPosition.position, transform));
+            StartCoroutine(GoToTarget(initialPosition, transform));
         }
 
         Encouraged = false;
@@ -171,7 +176,7 @@ public abstract class Character : MonoBehaviour
 
     public void PickRandomActions()
     {
-        ProposalActions.Clear();
+        if (ProposalActions != null) ProposalActions.Clear();
 
         if (RemainingActions.Count <= 0)
         {
@@ -222,17 +227,17 @@ public abstract class Character : MonoBehaviour
 
     public void DropAction(int index)
     {
-        if (!Memoried)
-        {
-            RemainingActions.Remove(Actions[index]);
-        }
-        else
-        {
-            if(UnityEngine.Random.Range(0,1) == 0)
-            {
-                RemainingActions.Remove(Actions[index]);
-            }
-        }
+        //if (!Memoried)
+        //{
+        //    RemainingActions.Remove(Actions[index]);
+        //}
+        //else
+        //{
+        //    if(UnityEngine.Random.Range(0,1) == 0)
+        //    {
+        //        RemainingActions.Remove(Actions[index]);
+        //    }
+        //}
     }
 
     protected IEnumerator GoToTarget(Vector3 position, Transform objectToMove)

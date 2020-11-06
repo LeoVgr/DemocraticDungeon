@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour
+public class TestBoss : MonoBehaviour
 {
     Character character;
 
@@ -13,19 +13,20 @@ public class Test : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            character.ReceiveDamage(500);
-        }
-        else if (Input.GetKeyDown(KeyCode.Z))
+        if (character.Life < 0) return;
+        if (Input.GetKeyDown(KeyCode.O))
         {
             character.PlayAction(0);
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKeyDown(KeyCode.P))
+        {
+            character.PlayAction(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.L))
         {
             character.PlayAction(2);
         }
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetKeyDown(KeyCode.M))
         {
             character.PlayAction(3);
         }

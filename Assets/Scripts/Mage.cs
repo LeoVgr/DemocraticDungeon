@@ -17,7 +17,6 @@ public class Mage : Character
         switch (index)
         {
             case 0:
-                Debug.Log("Play " + Actions[0]);
                 Fireball();
                 DropAction(0);
                 break;
@@ -102,10 +101,10 @@ public class Mage : Character
     private void ImmediateMemory()
     {
         anim.SetTrigger("ImmediateMemory");
-        foreach (var heroe in CharacterManager.sharedInstance.characters)
-        {
-            heroe.Memoried = true;
-        }
+        //foreach (var heroe in CharacterManager.sharedInstance.characters)
+        //{
+        //    heroe.Memoried = true;
+        //}
     }
 
     private void MortalContact()

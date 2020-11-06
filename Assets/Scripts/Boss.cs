@@ -50,15 +50,14 @@ public class Boss : Character
     private void Scream()
     {
         anim.SetTrigger("Scream");
-        if (GameManager.sharedInstance.orderedPlayers.Count == 1) return;
-        for (int i = 1; i < GameManager.sharedInstance.orderedPlayers.Count; i ++)
-        {
-            if (Random.Range(0,2) == 0)
-            {
-                //Play animation cancel
-                GameManager.sharedInstance.orderedPlayers.RemoveAt(i);
-            }
-        }
+        //for (int i = 1; i < GameManager.sharedInstance.orderedPlayers.Count; i ++)
+        //{
+        //    if (Random.Range(0,2) == 0)
+        //    {
+        //        //Play animation cancel
+        //        GameManager.sharedInstance.orderedPlayers.RemoveAt(i);
+        //    }
+        //}
     }
 
     private void MeleeHit()
@@ -70,12 +69,13 @@ public class Boss : Character
             {
                 target.ReceiveDamage(meleeHitDamage);
             }
+            target = null;
             return;
         }
         foreach(Character character in CharacterManager.sharedInstance.characters)
         {
             if (character.gameObject.name != "Boss" && character.Exposed )
-            {
+            {               
                 character.ReceiveDamage(meleeHitDamage);
             }
         }
@@ -90,6 +90,7 @@ public class Boss : Character
             {
                 target.ReceiveDamage(distanceAttackDamage);
             }
+            target = null;
             return;
         }
         foreach (Character character in CharacterManager.sharedInstance.characters)

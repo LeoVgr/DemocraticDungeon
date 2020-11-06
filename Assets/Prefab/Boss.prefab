@@ -708,11 +708,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8164cbdae40f4f42bfc1ad34341bf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialLife: 500
+  _initialLife: 5000
+  nomActions:
+  - Cri strident
+  - "Sacr\xE9 coup de bec"
+  - "D\xE9luge de plumes"
+  - Volaille arrogante
+  descActions:
+  - "Tous les h\xE9ros jouant apr\xE8s le Boss ont 25% de chance de rater leur action."
+  - "Inflige 50 d\xE9gats aux h\xE9ros \xE0 proximit\xE9."
+  - "Inflige 25 d\xE9gats \xE0 tous les h\xE9ros du champ de bataille."
+  - "Joue avant tous les joueurs, r\xE9cup\xE8re 100 PV et change l'ordre d'attaque
+    des h\xE9ros pendant cette manche."
   meleePosition: {fileID: 8484922205057405027}
-  meleeHitDamage: 0
-  distanceAttackDamage: 0
-  healAmount: 0
+  actionToPlay: -1
+  meleeHitDamage: 50
+  distanceAttackDamage: 25
+  healAmount: 100
 --- !u!95 &4365664083452507346
 Animator:
   serializedVersion: 3

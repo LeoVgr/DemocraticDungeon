@@ -104,12 +104,13 @@ public class GameManager : MonoBehaviour
                         heroe.Reset();
                         
                     }
-                    BeginChoice();
+                    currentPhase = Phase.Positioning;
                 }
                 else
                 {
                     if (!orderedPlayers[0].Busy && orderedPlayers[0].actionToPlay !=-1)
                     {
+                        OrderUI.sharedInstance.SortOrder();
                         Character heroePlaying = orderedPlayers[0];
                         print("PLAY ACTRION " + heroePlaying.actionToPlay);
                         heroePlaying.PlayAction(heroePlaying.actionToPlay);                        
