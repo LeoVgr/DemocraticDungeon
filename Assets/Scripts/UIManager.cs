@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -159,19 +160,19 @@ public class UIManager : MonoBehaviour
         im.color = color;
     }
 
-    public void updateActionChoice(string [] action_names,bool [] alerte)
+    public void updateActionChoice(string [] action_names, string[] action_desc,bool alerte)
     {
         if(photon_manager.life > 0)
         {
             attaque_1_title_txt.text = action_names[0];
-            attaque_1_desc_txt.text = photon_manager.description_actions[action_names[0]];
-            alerte_attaque_1.SetActive(alerte[0]);
+            attaque_1_desc_txt.text = action_desc[0];
+            alerte_attaque_1.SetActive(false);
             if (action_names.Length >= 2)
             {
                 bt_attaque_2.enabled = true;
                 attaque_2_title_txt.text = action_names[1];
-                attaque_2_desc_txt.text = photon_manager.description_actions[action_names[1]];
-                alerte_attaque_2.SetActive(alerte[1]);
+                attaque_2_desc_txt.text = action_desc[1];
+                alerte_attaque_2.SetActive(false);
             }
             else
             {
@@ -196,6 +197,7 @@ public class UIManager : MonoBehaviour
             case 0:
                 act_1 = true;
                 photon_manager.setVotes(0);
+                
                 break;
             case 1:
                 act_2 = true;
@@ -203,6 +205,11 @@ public class UIManager : MonoBehaviour
                 break;
             default:
                 break;
+        }
+        if (photon_manager.alert && (act_1 || act_2))
+        {
+            alerte_attaque_1.SetActive(!act_1);
+            alerte_attaque_2.SetActive(!act_2);
         }
         im_attaque1.enabled = act_1;
         im_attaque2.enabled = act_2;
