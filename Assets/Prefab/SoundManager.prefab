@@ -42,7 +42,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4804527422458414447, guid: 7cc0c8968a4b75d4fb7f1268330e9271, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -438,9 +438,11 @@ MonoBehaviour:
   emitters: []
   interfaceSounds: {fileID: 6849301821219044167}
   timer: {fileID: 0}
-  gameOverSound: {fileID: 0}
-  winGameSound: {fileID: 0}
+  gameOverSound: {fileID: 8300000, guid: 83cd9f6fbcc01fc44b3f057cb83dbe23, type: 3}
+  winGameSound: {fileID: 8300000, guid: 1ff43cfc3b1678a43a20556fb7df229d, type: 3}
   startGameSound: {fileID: 0}
+  tapeUp: {fileID: 8300000, guid: f2e8b5e5017da7f40b193a46dbd933dd, type: 3}
+  tapeDown: {fileID: 8300000, guid: c77b0070d26ae264b941ca302918bf61, type: 3}
 --- !u!1 &6849301821536553722
 GameObject:
   m_ObjectHideFlags: 0
