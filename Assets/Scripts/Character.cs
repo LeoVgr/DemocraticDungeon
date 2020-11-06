@@ -12,14 +12,20 @@ public abstract class Character : MonoBehaviour
 
     protected CharacterSound sounds;
 
+    public static string[] teams = { "Green", "Orange", "Blue", "Violet", "Black", "Pink" };
     public List<string> Actions { get; protected set; }
-    public Dictionary<string, string> ActionsDescription { get; protected set; }
+
+    public List<string> nomActions;
+    public List<string> descActions; 
+
+    public static Dictionary<string, string> ActionsDescription { get; protected set; }
     public Dictionary<string, string> RemainingActions { get; protected set; }
     public Dictionary<string, string> ProposalActions { get; protected set; }
 
     protected Transform initialPosition = null;
     [SerializeField]
     protected Transform meleePosition = null;
+    public int actionToPlay = -1;
 
     protected Animator anim;
     public int CountActions { get => Actions.Count; }
@@ -37,8 +43,20 @@ public abstract class Character : MonoBehaviour
     [NonSerialized]
     public Character protector = null;
 
-    private void Awake()
+    protected virtual void Awake()
     {
+        ActionsDescription = new Dictionary<string, string>();
+        ProposalActions = new Dictionary<string, string>();
+        RemainingActions = new Dictionary<string, string>();
+        GameManager.sharedInstance.AllActions = new Dictionary<string, string>();
+        Actions = new List<string>();
+
+        for (int i=0; i< descActions.Count; i++)
+        {
+            ActionsDescription.Add(nomActions[i], descActions[i]);
+            Actions.Add(nomActions[i]);
+           
+        }
         RemainingActions = ActionsDescription;
     }
 
@@ -72,6 +90,12 @@ public abstract class Character : MonoBehaviour
         Life -= amount;
         hpBar.CalculatePosition(Life, _initialLife);
         anim.SetFloat("Life", Life);
+        List<float> lifes = new List<float>();
+        foreach (var character in CharacterManager.sharedInstance.characters)
+        {
+            lifes.Add(character.Life);
+        }
+        GameManager.sharedInstance.photonManager.updateHp(lifes.ToArray());
         if (Life < 0)
         {
             Die();
@@ -80,7 +104,9 @@ public abstract class Character : MonoBehaviour
         {
             sounds.HurtSound();
         }
+
     }
+
 
     public void ReceiveHeal(float amount)
     {
@@ -152,16 +178,46 @@ public abstract class Character : MonoBehaviour
             RemainingActions = ActionsDescription;
         }
 
-        for (int i = 0; i < 2; i++)
+        int previous = -1;
+        if(RemainingActions.Count >=2)
         {
-            if(RemainingActions.Count > 0)
+            for (int i = 0; i < 2; i++)
             {
-                int randomNumber = UnityEngine.Random.Range(0, RemainingActions.Count);
-             
-                ProposalActions.Add(Actions[randomNumber], RemainingActions[Actions[randomNumber]]);
-              
+                if (RemainingActions.Count > 0)
+                {
+                    int randomNumber = UnityEngine.Random.Range(0, RemainingActions.Count);
+                    while(randomNumber == previous)
+                    {
+                        randomNumber = UnityEngine.Random.Range(0, RemainingActions.Count);
+                    }
+
+                    previous = randomNumber;
+                    ProposalActions.Add(Actions[randomNumber], RemainingActions[Actions[randomNumber]]);
+
+                }
             }
         }
+        else
+        {
+            for (int i = 0; i < 1; i++)
+            {
+                if (RemainingActions.Count > 0)
+                {
+                    int randomNumber = UnityEngine.Random.Range(0, RemainingActions.Count);
+                    while (randomNumber == previous)
+                    {
+                        randomNumber = UnityEngine.Random.Range(0, RemainingActions.Count);
+                    }
+             
+                    print("RANDOM : " + Actions.Count);
+                    ProposalActions.Add(Actions[randomNumber], RemainingActions[Actions[randomNumber]]);
+
+                }
+            }
+        }
+        
+      
+
     }
 
     public void DropAction(int index)
