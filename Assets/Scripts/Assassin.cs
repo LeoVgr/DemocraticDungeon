@@ -47,6 +47,7 @@ public class Assassin : Character
     {
         anim.SetTrigger("BackStab");
         Exposed = true;
+        StartCoroutine(GoToTarget(meleePosition.position, transform));
         int numberOfPeopleNearTheBoss = 0;
         foreach(Character character in CharacterManager.sharedInstance.characters)
         {

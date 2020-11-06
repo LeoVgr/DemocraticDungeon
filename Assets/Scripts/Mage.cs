@@ -119,6 +119,7 @@ public class Mage : Character
             break;
         }
         Exposed = true;
+        StartCoroutine(GoToTarget(meleePosition.position, transform));
     }
 
 }

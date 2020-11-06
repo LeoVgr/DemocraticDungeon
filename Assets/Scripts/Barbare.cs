@@ -48,6 +48,7 @@ public class Barbare : Character
     {
         anim.SetTrigger("KnockOut");
         Exposed = true;
+        StartCoroutine(GoToTarget(meleePosition.position, transform));
         Character boss = CharacterManager.sharedInstance.characters[0];
 
         foreach (var item in CharacterManager.sharedInstance.characters)
@@ -82,14 +83,13 @@ public class Barbare : Character
         {
             boss.ReceiveDamage((Encouraged) ? 500 * 2 : 500);
         }
-
-
     }
 
     private void HeadButt()
     {
         anim.SetTrigger("HeadButt");
         Exposed = true;
+        StartCoroutine(GoToTarget(meleePosition.position, transform));
         ReceiveDamage((Encouraged) ? headButtSelfDamage * 2 : headButtSelfDamage);
 
         foreach (var item in CharacterManager.sharedInstance.characters)

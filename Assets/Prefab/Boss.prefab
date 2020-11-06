@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialLife: 500
+  meleePosition: {fileID: 8484922205057405027}
 --- !u!95 &4365664083452507346
 Animator:
   serializedVersion: 3

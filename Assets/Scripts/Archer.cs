@@ -50,7 +50,7 @@ public class Archer : Character
         
         anim.SetTrigger("Ambush");
         Exposed = true;
-
+        StartCoroutine(GoToTarget(meleePosition.position, transform));
         foreach (Character character in CharacterManager.sharedInstance.characters)
         {
             if (character.name == "Boss")

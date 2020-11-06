@@ -13,6 +13,9 @@ public abstract class Character : MonoBehaviour
     public Dictionary<string, string> RemainingActions { get; protected set; }
     public Dictionary<string, string> ProposalActions { get; protected set; }
 
+    protected Transform initialPosition = null;
+    [SerializeField]
+    protected Transform meleePosition = null;
 
     protected Animator anim;
     public int CountActions { get => Actions.Count; }
@@ -47,6 +50,8 @@ public abstract class Character : MonoBehaviour
         Memoried = false;
         TurnPoisoned = 0;
         anim = GetComponent<Animator>();
+
+        initialPosition = transform;
     }
 
     public abstract void PlayAction(int index);
@@ -113,7 +118,12 @@ public abstract class Character : MonoBehaviour
         CanBeHealed = true;
         Protected = false;
         protector = null;
-        Exposed = false;
+        if (Exposed)
+        {
+            Exposed = false;
+            StartCoroutine(GoToTarget(initialPosition.position, transform));
+        }
+
         Encouraged = false;
         Invulnerable = false;
         Memoried = false;
@@ -154,6 +164,20 @@ public abstract class Character : MonoBehaviour
             {
                 RemainingActions.Remove(Actions[index]);
             }
+        }
+    }
+
+    protected IEnumerator GoToTarget(Vector3 position, Transform objectToMove)
+    {
+        float t = 0;
+        while (objectToMove.position != position)
+        {
+            Vector3 newPosition = new Vector3(Mathf.Lerp(objectToMove.position.x, position.x, t),
+                                               Mathf.Lerp(objectToMove.position.y, position.y, t),
+                                               objectToMove.position.z);
+            objectToMove.position = newPosition;
+            t += 0.2f;
+            yield return new WaitForFixedUpdate();
         }
     }
 }
