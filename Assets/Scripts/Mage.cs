@@ -101,6 +101,7 @@ public class Mage : Character
 
     private void ImmediateMemory()
     {
+        anim.SetTrigger("ImmediateMemory");
         foreach (var heroe in CharacterManager.sharedInstance.characters)
         {
             heroe.Memoried = true;
