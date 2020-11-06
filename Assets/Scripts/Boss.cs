@@ -15,7 +15,6 @@ public class Boss : Character
     {
         base.Start();
         Exposed = true;
-        team = "Pink";
     }
 
     public override void PlayAction(int index)
