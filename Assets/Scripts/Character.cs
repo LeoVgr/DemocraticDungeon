@@ -12,8 +12,6 @@ public abstract class Character : MonoBehaviour
 
     protected CharacterSound sounds;
 
-    public string team = "Not defined";
-
     public List<string> Actions { get; protected set; }
     public Dictionary<string, string> ActionsDescription { get; protected set; }
     public Dictionary<string, string> RemainingActions { get; protected set; }
