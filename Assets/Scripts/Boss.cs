@@ -5,11 +5,17 @@ using UnityEngine;
 public class Boss : Character
 {
     private Character target = null;
-
+    [SerializeField]
+    private float meleeHitDamage;
     protected override void Start()
     {
         base.Start();
         Exposed = true;
+    }
+
+    private void Update()
+    {
+        anim.SetFloat("Life",Life);
     }
 
     public override void PlayAction(int index)
@@ -18,11 +24,11 @@ public class Boss : Character
         switch (index)
         {
             case 0:
-                Action0();
+                Scream();
                 DropAction(0);
                 break;
             case 1:
-                Action1();
+                MeleeHit();
                 DropAction(1);
                 break;
             case 2:
@@ -42,14 +48,38 @@ public class Boss : Character
 
     //Here busy = false because we don't an animation yet, but we should do it as an key event during the animation
 
-    private void Action0()
+    private void Scream()
     {
-        Busy = false;
+        anim.SetTrigger("Scream");
+        if (GameManager.sharedInstance.orderedPlayers.Count == 1) return;
+        for (int i = 1; i < GameManager.sharedInstance.orderedPlayers.Count; i ++)
+        {
+            if (Random.Range(0,2) == 0)
+            {
+                //Play animation cancel
+                GameManager.sharedInstance.orderedPlayers.RemoveAt(i);
+            }
+        }
     }
 
-    private void Action1()
+    private void MeleeHit()
     {
-        Busy = false;
+        anim.SetTrigger("MeleeHit");
+        if (target != null)
+        {
+            if (target.Exposed)
+            {
+                target.ReceiveDamage(meleeHitDamage);
+            }
+            return;
+        }
+        foreach(Character character in CharacterManager.sharedInstance.characters)
+        {
+            if (character.gameObject.name != "Boss" && character.Exposed )
+            {
+                character.ReceiveDamage(meleeHitDamage);
+            }
+        }
     }
 
     private void Action2()

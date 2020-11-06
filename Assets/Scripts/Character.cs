@@ -8,6 +8,9 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected float _initialLife;
 
+
+    private HP hpBar;
+
     public List<string> Actions { get; protected set; }
     public Dictionary<string, string> ActionsDescription { get; protected set; }
     public Dictionary<string, string> RemainingActions { get; protected set; }
@@ -50,7 +53,7 @@ public abstract class Character : MonoBehaviour
         Memoried = false;
         TurnPoisoned = 0;
         anim = GetComponent<Animator>();
-
+        hpBar = GetComponentInChildren<HP>();
         initialPosition = transform;
     }
 
@@ -65,6 +68,7 @@ public abstract class Character : MonoBehaviour
         }
 
         Life -= amount;
+        hpBar.CalculatePosition(Life, _initialLife);
         if (Life < 0)
         {
             Die();
@@ -82,6 +86,7 @@ public abstract class Character : MonoBehaviour
             }
 
             Life += amount;
+            hpBar.CalculatePosition(Life, _initialLife);
         }
         
     }

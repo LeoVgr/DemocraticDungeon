@@ -15,7 +15,7 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            character.PlayAction(0);
+            character.ReceiveDamage(5);
         }
         else if (Input.GetKeyDown(KeyCode.Z))
         {
