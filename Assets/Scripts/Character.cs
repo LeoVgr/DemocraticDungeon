@@ -84,7 +84,6 @@ public abstract class Character : MonoBehaviour
 
     public void ReceiveDamage(float amount)
     {
-        Debug.Log(amount + " " + Life);
         if (Protected && protector != null)
         {
             protector.ReceiveDamage(amount / 2);
@@ -139,7 +138,9 @@ public abstract class Character : MonoBehaviour
 
     public void EndAction()
     {
+        OrderUI.sharedInstance.Next();
         Busy = false;
+        Test.canPlay = true;
     }
 
     public void Reset()
@@ -147,15 +148,19 @@ public abstract class Character : MonoBehaviour
         if (TurnPoisoned > 0)
         {
             TurnPoisoned--;
-            switch(UnityEngine.Random.Range(0,3))
+            Debug.Log(TurnPoisoned);
+            switch (UnityEngine.Random.Range(0,3))
             {
                 case 0:
+                    Debug.Log(0);
                     ReceiveDamage(0);
                     break;
                 case 1:
+                    Debug.Log(50);
                     ReceiveDamage(50);
                     break;
                 case 2:
+                    Debug.Log(100);
                     ReceiveDamage(100);
                     break;
             }

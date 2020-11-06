@@ -76,26 +76,19 @@ public class Mage : Character
             classesHealed.Add(classes[rand]);
             classes.RemoveAt(rand);
         }
-
-        //Hurt the ones who get choosen
-        foreach (Character character in CharacterManager.sharedInstance.characters)
+        
+        //Heal the ones who get choosen
+        for (int i = 0; i < numberOfPeopleHealed; i++)
         {
-            for (int i = 0; i < numberOfPeopleHealed; i++)
+            foreach (Character character in CharacterManager.sharedInstance.characters)
             {
                 if (character.gameObject.name == classesHealed[i]) //If the current character is selected, inflict him damage and remove him from the list for optimization
                 {
-                    classesHealed.RemoveAt(i);
                     character.ReceiveHeal(healAmount);
-                    numberOfPeopleHealed--;
                     break;
                 }
             }
-            if (numberOfPeopleHealed == 0)
-            {
-                break;
-            }
         }
-        return;
     }
 
     private void ImmediateMemory()

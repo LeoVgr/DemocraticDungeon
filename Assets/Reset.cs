@@ -13,6 +13,7 @@ public class Reset : MonoBehaviour
             {
                 character.Reset();
             }
+            OrderUI.sharedInstance.SortOrder();
         }
     }
 }

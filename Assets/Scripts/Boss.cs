@@ -50,6 +50,13 @@ public class Boss : Character
     private void Scream()
     {
         anim.SetTrigger("Scream");
+        for (int i = 0; i < OrderUI.sharedInstance.TurnLeft(); i++)
+        {
+            if (Random.Range(0,4) == 0)
+            {
+                OrderUI.sharedInstance.Next();
+            }
+        }
         //for (int i = 1; i < GameManager.sharedInstance.orderedPlayers.Count; i ++)
         //{
         //    if (Random.Range(0,2) == 0)

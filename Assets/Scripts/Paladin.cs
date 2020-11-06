@@ -107,8 +107,8 @@ public class Paladin : Character
             if (character.gameObject.name == "Boss")
             {
                 character.ReceiveDamage((Encouraged)?divineStrikeDamage*2:divineStrikeDamage);
-            }
-            break;
+                break;
+            }        
         }
     }
 
