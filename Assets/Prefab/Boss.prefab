@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 8484922204671231294}
   - component: {fileID: 4365664083452507346}
   - component: {fileID: 5463447669378330068}
+  - component: {fileID: -6695306083486265901}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -422,6 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialLife: 500
   meleePosition: {fileID: 8484922205057405027}
+  meleeHitDamage: 0
 --- !u!95 &4365664083452507346
 Animator:
   serializedVersion: 3
@@ -492,3 +494,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6695306083486265901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484922205057405024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defee5458b6f10844b5ca8e3faa164ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionSounds: {fileID: 0}
+  skillSounds: []
+  characterSounds: {fileID: 0}
+  effortSounds: []
+  hurtSounds: []
+  deathSound: {fileID: 0}
+  victorySound: {fileID: 0}
+  actionsVolume: 1
+  characterVolume: 1

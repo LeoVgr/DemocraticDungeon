@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 4752098280154344262}
   - component: {fileID: 3748630854586362046}
   - component: {fileID: 127338477057816532}
+  - component: {fileID: -8875405998110154035}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Untagged
@@ -580,3 +581,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-8875405998110154035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7718135641985784065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defee5458b6f10844b5ca8e3faa164ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionSounds: {fileID: 0}
+  skillSounds: []
+  characterSounds: {fileID: 0}
+  effortSounds: []
+  hurtSounds: []
+  deathSound: {fileID: 0}
+  victorySound: {fileID: 0}
+  actionsVolume: 1
+  characterVolume: 1

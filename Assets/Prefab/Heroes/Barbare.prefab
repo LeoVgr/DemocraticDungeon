@@ -468,8 +468,8 @@ GameObject:
   - component: {fileID: 4516246856635836727}
   - component: {fileID: 1183019400262572685}
   - component: {fileID: 3728270566636005210}
-  - component: {fileID: 806561307}
   - component: {fileID: 126676775736832779}
+  - component: {fileID: -3957709453648598583}
   m_Layer: 0
   m_Name: Barbare
   m_TagString: Untagged
@@ -580,23 +580,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &806561307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8699664442645942241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e64c22fd800d1d34fa8108f007f10326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _initialLife: 0
-  meleePosition: {fileID: 0}
-  magicKissPower: 0
-  headButtDamage: 0
-  headButtSelfDamage: 0
 --- !u!114 &126676775736832779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,3 +597,24 @@ MonoBehaviour:
   magicKissPower: 0
   headButtDamage: 0
   headButtSelfDamage: 0
+--- !u!114 &-3957709453648598583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8699664442645942241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defee5458b6f10844b5ca8e3faa164ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionSounds: {fileID: 0}
+  skillSounds: []
+  characterSounds: {fileID: 0}
+  effortSounds: []
+  hurtSounds: []
+  deathSound: {fileID: 0}
+  victorySound: {fileID: 0}
+  actionsVolume: 1
+  characterVolume: 1

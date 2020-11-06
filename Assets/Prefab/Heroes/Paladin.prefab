@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 6699175120752916778}
   - component: {fileID: 5209538747865693193}
   - component: {fileID: 5926359040106698108}
+  - component: {fileID: 8454682987815515659}
   m_Layer: 0
   m_Name: Paladin
   m_TagString: Untagged
@@ -579,3 +580,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8454682987815515659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2290798456885168463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defee5458b6f10844b5ca8e3faa164ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionSounds: {fileID: 0}
+  skillSounds: []
+  characterSounds: {fileID: 0}
+  effortSounds: []
+  hurtSounds: []
+  deathSound: {fileID: 0}
+  victorySound: {fileID: 0}
+  actionsVolume: 1
+  characterVolume: 1
