@@ -15,11 +15,11 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            character.ReceiveDamage(5);
+            character.ReceiveDamage(500);
         }
         else if (Input.GetKeyDown(KeyCode.Z))
         {
-            character.PlayAction(1);
+            character.PlayAction(0);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {

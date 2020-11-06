@@ -8,8 +8,11 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     protected float _initialLife;
 
+    protected HP hpBar;
 
-    private HP hpBar;
+    protected CharacterSound sounds;
+
+    public string team = "Not defined";
 
     public List<string> Actions { get; protected set; }
     public Dictionary<string, string> ActionsDescription { get; protected set; }
@@ -53,7 +56,9 @@ public abstract class Character : MonoBehaviour
         Memoried = false;
         TurnPoisoned = 0;
         anim = GetComponent<Animator>();
+        anim.SetFloat("Life", Life);
         hpBar = GetComponentInChildren<HP>();
+        sounds = GetComponent<CharacterSound>();
         initialPosition = transform;
     }
 
@@ -66,12 +71,16 @@ public abstract class Character : MonoBehaviour
             protector.ReceiveDamage(amount / 2);
             return;
         }
-
         Life -= amount;
         hpBar.CalculatePosition(Life, _initialLife);
+        anim.SetFloat("Life", Life);
         if (Life < 0)
         {
             Die();
+        }
+        else
+        {
+            sounds.HurtSound();
         }
     }
 
@@ -86,6 +95,7 @@ public abstract class Character : MonoBehaviour
             }
 
             Life += amount;
+            anim.SetFloat("Life", Life);
             hpBar.CalculatePosition(Life, _initialLife);
         }
         
@@ -94,6 +104,7 @@ public abstract class Character : MonoBehaviour
     private void Die()
     {
         Debug.Log(gameObject.name + " dead");
+        sounds.DeathSound();
         return;
     }
 
@@ -153,8 +164,6 @@ public abstract class Character : MonoBehaviour
               
             }
         }
-      
-
     }
 
     public void DropAction(int index)

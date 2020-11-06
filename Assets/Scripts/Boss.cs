@@ -7,15 +7,15 @@ public class Boss : Character
     private Character target = null;
     [SerializeField]
     private float meleeHitDamage;
+    [SerializeField]
+    private float distanceAttackDamage;
+    [SerializeField]
+    private float healAmount;
     protected override void Start()
     {
         base.Start();
         Exposed = true;
-    }
-
-    private void Update()
-    {
-        anim.SetFloat("Life",Life);
+        team = "Pink";
     }
 
     public override void PlayAction(int index)
@@ -32,11 +32,11 @@ public class Boss : Character
                 DropAction(1);
                 break;
             case 2:
-                Action2();
+                DistanceAttack();
                 DropAction(2);
                 break;
             case 3:
-                Action3();
+                Heal();
                 DropAction(3);
                 break;
             default:
@@ -82,18 +82,34 @@ public class Boss : Character
         }
     }
 
-    private void Action2()
+    private void DistanceAttack()
     {
-        Busy = false;
+        anim.SetTrigger("DistanceAttack");
+        if (target != null)
+        {
+            if (target.Exposed)
+            {
+                target.ReceiveDamage(distanceAttackDamage);
+            }
+            return;
+        }
+        foreach (Character character in CharacterManager.sharedInstance.characters)
+        {
+            if (character.gameObject.name != "Boss")
+            {
+                character.ReceiveDamage(distanceAttackDamage);
+            }
+        }
     }
-    private void Action3()
+    private void Heal()
     {
-        Busy = false;
+        anim.SetTrigger("Heal");
+        ReceiveHeal(healAmount);
+        //Need to shuffle the rest of ordered player. Problem: the UI has to be implement, also when the boss uses this action he has to be the first of the list
     }
 
     public void Taunt(Character character)
     {
         target = character;
     }
-
 }

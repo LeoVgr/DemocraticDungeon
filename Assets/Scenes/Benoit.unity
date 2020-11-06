@@ -123,12 +123,29 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &84429821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8484922205057405024, guid: cfb3919229be61b49b560a94bc26352a, type: 3}
+  m_PrefabInstance: {fileID: 8484922204671231292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &84429822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84429821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71692d0382ab2ee469076a985a1ba5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &147900623 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8484922204671231294, guid: cfb3919229be61b49b560a94bc26352a, type: 3}
   m_PrefabInstance: {fileID: 8484922204671231292}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 84429821}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8164cbdae40f4f42bfc1ad34341bf25, type: 3}
@@ -663,6 +680,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 591348597}
     m_Modifications:
+    - target: {fileID: 2903337254536689657, guid: 2f12554efee3f0540a95c94c9f694839, type: 3}
+      propertyPath: ambushDamage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903337254536689657, guid: 2f12554efee3f0540a95c94c9f694839, type: 3}
+      propertyPath: approximateShotDamageOnBoss
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903337254536689657, guid: 2f12554efee3f0540a95c94c9f694839, type: 3}
+      propertyPath: approximateShotDamageOnTeammate
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903337254536689657, guid: 2f12554efee3f0540a95c94c9f694839, type: 3}
+      propertyPath: swarmOfArrowDamageOnBoss
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903337254536689657, guid: 2f12554efee3f0540a95c94c9f694839, type: 3}
+      propertyPath: swarmOfArrowDamageOnTeammate
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 3884057993345804352, guid: 2f12554efee3f0540a95c94c9f694839, type: 3}
       propertyPath: m_Name
       value: Archer

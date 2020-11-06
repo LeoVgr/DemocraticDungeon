@@ -711,6 +711,8 @@ MonoBehaviour:
   _initialLife: 500
   meleePosition: {fileID: 8484922205057405027}
   meleeHitDamage: 0
+  distanceAttackDamage: 0
+  healAmount: 0
 --- !u!95 &4365664083452507346
 Animator:
   serializedVersion: 3
@@ -803,10 +805,9 @@ MonoBehaviour:
   effortEnabled: 0
   effortSounds: []
   hurtSounds:
-  - {fileID: 8300000, guid: 8a851d680763a60419cee2cbb13e23eb, type: 3}
+  - {fileID: 8300000, guid: 63d77ed088b471a42857bfbcd94a216f, type: 3}
   - {fileID: 8300000, guid: 5c68f5d674f884f4fbeb96cc145d8d03, type: 3}
   - {fileID: 8300000, guid: 97ca8259a0a0ccf4da5b5b3a9793c419, type: 3}
-  - {fileID: 8300000, guid: 63d77ed088b471a42857bfbcd94a216f, type: 3}
   deathSound: {fileID: 8300000, guid: 8a851d680763a60419cee2cbb13e23eb, type: 3}
   victorySound: {fileID: 0}
   actionsVolume: 1
