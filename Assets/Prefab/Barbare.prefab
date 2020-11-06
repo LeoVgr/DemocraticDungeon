@@ -506,9 +506,12 @@ MonoBehaviour:
   knockOut: {fileID: 8300000, guid: 08835eb7ef7487e4fbb8e34db0093be7, type: 3}
   characterSounds: {fileID: 3938723821205817230}
   effortSounds: []
-  hurtSounds: []
-  deathSound: {fileID: 0}
-  victorySound: {fileID: 0}
+  hurtSounds:
+  - {fileID: 8300000, guid: 57edd7475e959394cbd5df33fd38960b, type: 3}
+  - {fileID: 8300000, guid: fcd4871db64b3e543843a561a669544f, type: 3}
+  - {fileID: 8300000, guid: df380700ae97c2d48b6f7438f1c72f86, type: 3}
+  deathSound: {fileID: 8300000, guid: 3d67d1386737df94a9862478f4eecb31, type: 3}
+  victorySound: {fileID: 8300000, guid: 949ba25c1e8382e43a535a4ef9ff1f35, type: 3}
   looseSound: {fileID: 0}
   actionsVolume: 1
   characterVolume: 1

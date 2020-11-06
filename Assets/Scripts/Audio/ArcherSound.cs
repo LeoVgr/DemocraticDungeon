@@ -21,7 +21,6 @@ public class ArcherSound : MonoBehaviour
     public AudioClip[] hurtSounds;
     public AudioClip deathSound;
     public AudioClip victorySound;
-    public AudioClip looseSound;
 
     [Header("Mixer")]
 
@@ -67,7 +66,7 @@ public class ArcherSound : MonoBehaviour
 
     public void CheerleaderSound()
     {
-        EffortSound();
+        //EffortSound();
         actionSounds.clip = cheerleader;
         actionSounds.Play();
     }
@@ -80,19 +79,13 @@ public class ArcherSound : MonoBehaviour
 
     public void EffortSound()
     {
-        //characterSounds.clip = effortSounds[UnityEngine.Random.Range(0, effortSounds.Length)];
-        //characterSounds.Play();
+        characterSounds.clip = effortSounds[UnityEngine.Random.Range(0, effortSounds.Length)];
+        characterSounds.Play();
     }
 
     public void VictorySound()
     {
         characterSounds.clip = victorySound;
-        characterSounds.Play();
-    }
-
-    public void LooseSound()
-    {
-        characterSounds.clip = looseSound;
         characterSounds.Play();
     }
 

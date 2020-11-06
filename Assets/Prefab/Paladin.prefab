@@ -224,11 +224,16 @@ MonoBehaviour:
   protectAlly: {fileID: 8300000, guid: a8459b23acc238b4b98773e9cc937301, type: 3}
   taunt: {fileID: 8300000, guid: 9a1dc889d62f8754c97a49fbb1b48258, type: 3}
   characterSounds: {fileID: 5942902974756903508}
-  effortSounds: []
-  hurtSounds: []
-  deathSound: {fileID: 0}
-  victorySound: {fileID: 0}
-  looseSound: {fileID: 0}
+  effortSounds:
+  - {fileID: 8300000, guid: 08e2a4ad41905cc4787c49205339b3c2, type: 3}
+  - {fileID: 8300000, guid: 841a7e4cf5b46a442bb09aeceb9539bb, type: 3}
+  - {fileID: 8300000, guid: b29425f818871f343ab48576c3f88960, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: a8e3c4c44c4ad334394a95f8c9d2166d, type: 3}
+  - {fileID: 8300000, guid: e08559b94249029438dea7a5e8d1f5e7, type: 3}
+  - {fileID: 8300000, guid: 64b7c7a57982b7d4593dc9fab65c3390, type: 3}
+  deathSound: {fileID: 8300000, guid: fa152507cd823f84ea490399f6db98bb, type: 3}
+  victorySound: {fileID: 8300000, guid: b45c6a5be9acc1b439b281f07b0a24b7, type: 3}
   actionsVolume: 1
   characterVolume: 1
 --- !u!1 &5318223518142973876

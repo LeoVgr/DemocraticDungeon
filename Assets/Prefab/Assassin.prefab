@@ -474,11 +474,17 @@ MonoBehaviour:
   dodge: {fileID: 8300000, guid: b6cbf325d20a15844878b400d620e530, type: 3}
   poisonDart: {fileID: 8300000, guid: 0161ed997ee3b074ab0fad278b16a7a2, type: 3}
   characterSounds: {fileID: 6879301922259218032}
-  effortSounds: []
-  hurtSounds: []
-  deathSound: {fileID: 0}
-  victorySound: {fileID: 0}
-  looseSound: {fileID: 0}
+  effortSounds:
+  - {fileID: 8300000, guid: 870f3e344e448874a8c1f3e627f13c4d, type: 3}
+  - {fileID: 8300000, guid: 0d35e0fdf217350469901c0ce7943dd1, type: 3}
+  - {fileID: 8300000, guid: 974e699e3c9cad24ba64803a696d25d7, type: 3}
+  - {fileID: 8300000, guid: 73025d55e447a324f9f61168cdb54642, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: 20720a5afd589d24ba1885ae25ea508a, type: 3}
+  - {fileID: 8300000, guid: 4827ed6a1732c9d48a235179f5361245, type: 3}
+  - {fileID: 8300000, guid: 35cbde296df218148841b65c3e44b8b0, type: 3}
+  deathSound: {fileID: 8300000, guid: 0881ca8a54a4ff046b974aa85be5d488, type: 3}
+  victorySound: {fileID: 8300000, guid: ddeca623e56fd7043a9d5572374b9539, type: 3}
   actionsVolume: 1
   characterVolume: 1
 --- !u!1 &6639779190508399602

@@ -429,9 +429,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   master: {fileID: 24100000, guid: 7cc0c8968a4b75d4fb7f1268330e9271, type: 2}
   epicMusicSource: {fileID: 6849301821316768925}
-  epicMusic: {fileID: 0}
+  epicMusic: {fileID: 8300000, guid: 178e2691e57523f40a0745fd2fdc2973, type: 3}
   bossaMusicSource: {fileID: 6849301821270033503}
-  bossaMusic: {fileID: 0}
+  bossaMusic: {fileID: 8300000, guid: 44de0803acdba6b47a278ce39809236f, type: 3}
   crossfadeFactor: 0.05
   ambSource: {fileID: 6849301821536553723}
   bed: {fileID: 0}

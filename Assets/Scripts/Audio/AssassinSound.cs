@@ -21,7 +21,6 @@ public class AssassinSound : MonoBehaviour
     public AudioClip[] hurtSounds;
     public AudioClip deathSound;
     public AudioClip victorySound;
-    public AudioClip looseSound;
 
     [Header("Mixer")]
 
@@ -46,7 +45,7 @@ public class AssassinSound : MonoBehaviour
 
     public void HealingPotionSound()
     {
-        EffortSound();
+        //EffortSound();
         actionSounds.clip = healingPotion;
         actionSounds.Play();
     }
@@ -67,7 +66,7 @@ public class AssassinSound : MonoBehaviour
 
     public void PoisonDartSound()
     {
-        EffortSound();
+        //EffortSound();
         actionSounds.clip = poisonDart;
         actionSounds.Play();
     }
@@ -87,12 +86,6 @@ public class AssassinSound : MonoBehaviour
     public void VictorySound()
     {
         characterSounds.clip = victorySound;
-        characterSounds.Play();
-    }
-
-    public void LooseSound()
-    {
-        characterSounds.clip = looseSound;
         characterSounds.Play();
     }
 

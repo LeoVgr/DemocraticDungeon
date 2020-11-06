@@ -30,9 +30,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip gameOverSound;
     public AudioClip winGameSound;
     public AudioClip startGameSound;
+    public AudioClip tapeUp;
+    public AudioClip tapeDown;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         epicMusicSource.loop = true;
@@ -55,65 +56,50 @@ public class SoundManager : MonoBehaviour
         ambSource.Play();
     }
     
+    public void IntroEpic()
+    {
+        StartCoroutine(StartFade(epicMusicSource, 2f, 1f));
+    }
 
     public void EpicToBossaMusic()
     {
-        StartCoroutine(ETBCrossFade(0.05f));
-    }
-
-    IEnumerator ETBCrossFade(float factor)
-    {
-        if(epicMusicSource.volume > 0)
-        {
-            for(float v = 1f; v >=0; v -= factor)
-            {
-                epicMusicSource.volume = v;
-                bossaMusicSource.volume = (1 - v);
-                yield return new WaitForSeconds(factor);
-            }
-        }
+        StartCoroutine(StartFade(bossaMusicSource, 1f, 1f));
+        StartCoroutine(StartFade(epicMusicSource, 1f, 0f));
+        interfaceSounds.clip = tapeDown;
+        interfaceSounds.Play();
     }
 
     public void BossaToEpicMusic()
     {
-        StartCoroutine(BTECrossFade(0.05f));
-    }
-
-    IEnumerator BTECrossFade(float factor)
-    {
-        if (bossaMusicSource.volume > 0)
-        {
-            for (float v = 1f; v >= 0; v -= factor)
-            {
-                bossaMusicSource.volume = v;
-                epicMusicSource.volume = (1 - v);
-                yield return new WaitForSeconds(factor);
-            }
-        }
+        StartCoroutine(StartFade(epicMusicSource, 1f, 1f));
+        StartCoroutine(StartFade(bossaMusicSource, 1f, 0f));
+        interfaceSounds.clip = tapeUp;
+        interfaceSounds.Play();
     }
 
     public void GameOverSound()
     {
-        StartCoroutine(EFadeout(0.05f));
+        StartCoroutine(StartFade(epicMusicSource, 2f, 0f));
         interfaceSounds.clip = gameOverSound;
         interfaceSounds.Play();
     }
     public void WinSound()
     {
-        StartCoroutine(EFadeout(0.05f));
+        StartCoroutine(StartFade(epicMusicSource, 2f, 0f));
         interfaceSounds.clip = winGameSound;
         interfaceSounds.Play();
     }
-
-    IEnumerator EFadeout(float factor)
+    public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
     {
-        if (epicMusicSource.volume > 0)
+        float currentTime = 0;
+        float start = audioSource.volume;
+
+        while (currentTime < duration)
         {
-            for (float v = 1f; v >= 0; v -= factor)
-            {
-                epicMusicSource.volume = v;
-                yield return new WaitForSeconds(factor);
-            }
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
         }
+        yield break;
     }
 }

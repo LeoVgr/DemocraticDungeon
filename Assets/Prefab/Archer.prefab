@@ -224,11 +224,16 @@ MonoBehaviour:
   rainOfArrows: {fileID: 8300000, guid: 70fe35ecd2808654c8ca7faa480110fc, type: 3}
   cheerleader: {fileID: 8300000, guid: 610771431826f6c4ba139e389426f1ef, type: 3}
   characterSounds: {fileID: 3504150767516245372}
-  effortSounds: []
-  hurtSounds: []
-  deathSound: {fileID: 0}
-  victorySound: {fileID: 0}
-  looseSound: {fileID: 0}
+  effortSounds:
+  - {fileID: 8300000, guid: d4d1851b6c673af49aa8eeaa868cb860, type: 3}
+  - {fileID: 8300000, guid: 0e9f6b468d63b564ebf79187ed0c5549, type: 3}
+  - {fileID: 8300000, guid: 9f6198b06a02b3d4893a4be9aa841952, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: 08006de43488a8b4daf336a7dc52b208, type: 3}
+  - {fileID: 8300000, guid: 7a8be7e533ad569489d83e5e671f99d7, type: 3}
+  - {fileID: 8300000, guid: 9a58933e98746744f95a94a8b4956158, type: 3}
+  deathSound: {fileID: 8300000, guid: bc6ee02685fef544aae324883d8b8eab, type: 3}
+  victorySound: {fileID: 8300000, guid: 29ac86158aa9ad947b02cb97e631dc24, type: 3}
   actionsVolume: 1
   characterVolume: 1
 --- !u!114 &1003802844089141514
@@ -253,7 +258,6 @@ MonoBehaviour:
   hurtSounds: []
   deathSound: {fileID: 0}
   victorySound: {fileID: 0}
-  looseSound: {fileID: 0}
   actionsVolume: 1
   characterVolume: 1
 --- !u!1 &4516153651003929550

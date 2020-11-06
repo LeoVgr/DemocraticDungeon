@@ -22,7 +22,6 @@ public class PaladinSound : MonoBehaviour
     public AudioClip[] hurtSounds;
     public AudioClip deathSound;
     public AudioClip victorySound;
-    public AudioClip looseSound;
 
     [Header("Mixer")]
 
@@ -95,12 +94,6 @@ public class PaladinSound : MonoBehaviour
     public void VictorySound()
     {
         characterSounds.clip = victorySound;
-        characterSounds.Play();
-    }
-
-    public void LooseSound()
-    {
-        characterSounds.clip = looseSound;
         characterSounds.Play();
     }
 

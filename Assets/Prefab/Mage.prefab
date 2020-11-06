@@ -509,10 +509,17 @@ MonoBehaviour:
   instantMemory: {fileID: 8300000, guid: cdb5ee95a2d31e045b280b9d17a3fd3b, type: 3}
   mortalTouch: {fileID: 8300000, guid: 1ebc0d175c7ae324795dd8a1735f4a39, type: 3}
   characterSounds: {fileID: 4182773845513268449}
-  effortSounds: []
-  hurtSounds: []
-  deathSound: {fileID: 0}
-  victorySound: {fileID: 0}
-  looseSound: {fileID: 0}
+  effortSounds:
+  - {fileID: 8300000, guid: 23ea69a8efd202344a949a7aa700fea1, type: 3}
+  - {fileID: 8300000, guid: 78f5bcec3dd08d949af06f4416596fc1, type: 3}
+  - {fileID: 8300000, guid: c3e410d1740f83c488b45914d84c310b, type: 3}
+  - {fileID: 8300000, guid: e77bf41b7a158c34e9af68e17149199f, type: 3}
+  - {fileID: 8300000, guid: 32dba4afba4545748af8c01f14ce6184, type: 3}
+  hurtSounds:
+  - {fileID: 8300000, guid: 4e6c6b67124c4bc48ad28a870c23598d, type: 3}
+  - {fileID: 8300000, guid: 6b941ccca592ccd40806fcb3e08ec72f, type: 3}
+  - {fileID: 8300000, guid: bd79bf8628409f743bcb95bf9661a716, type: 3}
+  deathSound: {fileID: 8300000, guid: ca4d4560fda387b40bc315643aa9edad, type: 3}
+  victorySound: {fileID: 8300000, guid: f64192c22441b2f439e275dcad206015, type: 3}
   actionsVolume: 1
   characterVolume: 1
