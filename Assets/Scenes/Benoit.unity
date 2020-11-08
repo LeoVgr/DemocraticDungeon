@@ -620,14 +620,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 111851056670660275, guid: f406857943e62f744ba48e17225d6913, type: 3}
-      propertyPath: m_Name
-      value: Archer
-      objectReference: {fileID: 0}
-    - target: {fileID: 205440267035185798, guid: f406857943e62f744ba48e17225d6913, type: 3}
-      propertyPath: m_Name
-      value: Paladin
-      objectReference: {fileID: 0}
     - target: {fileID: 733548076451348697, guid: f406857943e62f744ba48e17225d6913, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.75
@@ -672,29 +664,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 878424225081746054, guid: f406857943e62f744ba48e17225d6913, type: 3}
-      propertyPath: m_Name
-      value: Mage
-      objectReference: {fileID: 0}
-    - target: {fileID: 3837242134392347443, guid: f406857943e62f744ba48e17225d6913, type: 3}
-      propertyPath: m_Name
-      value: Barbare
-      objectReference: {fileID: 0}
-    - target: {fileID: 5863633169690166694, guid: f406857943e62f744ba48e17225d6913, type: 3}
-      propertyPath: m_Name
-      value: Boss
-      objectReference: {fileID: 0}
     - target: {fileID: 8695200938498168592, guid: f406857943e62f744ba48e17225d6913, type: 3}
       propertyPath: m_Name
       value: UI Ordre
-      objectReference: {fileID: 0}
-    - target: {fileID: 8695200938498168592, guid: f406857943e62f744ba48e17225d6913, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9112590889226753480, guid: f406857943e62f744ba48e17225d6913, type: 3}
-      propertyPath: m_Name
-      value: Assassin
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f406857943e62f744ba48e17225d6913, type: 3}

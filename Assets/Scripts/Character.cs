@@ -89,6 +89,10 @@ public abstract class Character : MonoBehaviour
             protector.ReceiveDamage(amount / 2);
             return;
         }
+        if (Invulnerable)
+        {
+            return;
+        }
         Life -= amount;
         hpBar.CalculatePosition(Life, _initialLife);
         anim.SetFloat("Life", Life);

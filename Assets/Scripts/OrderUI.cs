@@ -35,7 +35,7 @@ public class OrderUI : MonoBehaviour
     [SerializeField]
     private float stepX = 1;
     [SerializeField]
-    private int index = 0;
+    public int index = 0;
 
     private void Start()
     {

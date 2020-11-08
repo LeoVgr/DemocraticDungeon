@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Barbare : Character
 {
@@ -102,14 +103,18 @@ public class Barbare : Character
         anim.SetTrigger("BeastlyStrike");
         Exposed = true;
         StartCoroutine(GoToTarget(meleePosition.position, transform));
-        Character boss;
+        Character boss;      
 
-        foreach (var heroe in OrderUI.sharedInstance.orderedPlayers)
+        for (int i = 0;  i< OrderUI.sharedInstance.orderedPlayers.Count; i++)
         {
-            if (heroe.gameObject.name == "Boss")
+            if (OrderUI.sharedInstance.orderedPlayers[i].gameObject.name == "Boss")
             {
-                boss = heroe;
-                OrderUI.sharedInstance.orderedPlayers.Remove(boss);
+                if (i < OrderUI.sharedInstance.index)
+                {
+                    break;
+                }
+                boss = OrderUI.sharedInstance.orderedPlayers[i];
+                OrderUI.sharedInstance.orderedPlayers.RemoveAt(i);
                 OrderUI.sharedInstance.orderedPlayers.Add(boss);
                 OrderUI.sharedInstance.PlaceAllIcons();
                 break;

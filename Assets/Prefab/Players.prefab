@@ -455,6 +455,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5549015971721085138}
     m_Modifications:
+    - target: {fileID: 1592974525, guid: 59307d5110d665342b2910a05fb4a82a, type: 3}
+      propertyPath: m_FrontSortingLayerID
+      value: -861811879
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592974525, guid: 59307d5110d665342b2910a05fb4a82a, type: 3}
+      propertyPath: m_BackSortingLayerID
+      value: -861811879
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592974525, guid: 59307d5110d665342b2910a05fb4a82a, type: 3}
+      propertyPath: m_FrontSortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592974525, guid: 59307d5110d665342b2910a05fb4a82a, type: 3}
+      propertyPath: m_BackSortingLayer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 127338477057816532, guid: 59307d5110d665342b2910a05fb4a82a, type: 3}
       propertyPath: m_Color.r
       value: 0.94370043

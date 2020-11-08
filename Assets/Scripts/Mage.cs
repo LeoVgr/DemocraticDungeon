@@ -108,8 +108,8 @@ public class Mage : Character
             if (character.gameObject.name == "Boss")
             {
                 character.ReceiveDamage((Encouraged) ? mortalContactDamage * 2 : mortalContactDamage);
+                break;
             }
-            break;
         }
         Exposed = true;
         StartCoroutine(GoToTarget(meleePosition.position, transform));
