@@ -8,7 +8,7 @@ public class Barbare : Character
     public float headButtDamage;
     public float headButtSelfDamage;
 
-    public override void PlayAction(int index)
+    public override sealed void PlayAction(int index)
     {
         Busy = true;
         switch (index)
@@ -85,6 +85,7 @@ public class Barbare : Character
         anim.SetTrigger("HeadButt");
         Exposed = true;
         StartCoroutine(GoToTarget(meleePosition.position, transform));
+
         ReceiveDamage((Encouraged) ? headButtSelfDamage * 2 : headButtSelfDamage);
 
         foreach (var item in CharacterManager.sharedInstance.characters)
@@ -100,21 +101,20 @@ public class Barbare : Character
     {
         anim.SetTrigger("BeastlyStrike");
         Exposed = true;
-        //Character boss;
-        //Exposed = true;
-        //foreach (var heroe in GameManager.sharedInstance.orderedPlayers)
-        //{
-        //    if(heroe.gameObject.name == "Boss")
-        //    {
-        //        boss = heroe;
-        //        GameManager.sharedInstance.orderedPlayers.Remove(boss);
-        //        GameManager.sharedInstance.orderedPlayers.Add(boss);
+        StartCoroutine(GoToTarget(meleePosition.position, transform));
+        Character boss;
 
-                
-
-        //    }
-        //}
-        //RemainingActions.Remove(Actions[Random.Range(0,RemainingActions.Count)]);
+        foreach (var heroe in OrderUI.sharedInstance.orderedPlayers)
+        {
+            if (heroe.gameObject.name == "Boss")
+            {
+                boss = heroe;
+                OrderUI.sharedInstance.orderedPlayers.Remove(boss);
+                OrderUI.sharedInstance.orderedPlayers.Add(boss);
+                OrderUI.sharedInstance.PlaceAllIcons();
+                break;
+            }
+        }
     }
 
 }

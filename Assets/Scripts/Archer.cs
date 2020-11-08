@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal.Internal;
 
-public class Archer : Character 
+public class Archer : Character
 {
 
     public float ambushDamage;
@@ -11,28 +12,24 @@ public class Archer : Character
     public float swarmOfArrowDamageOnBoss;
     public float swarmOfArrowDamageOnTeammate;
 
-    public override void PlayAction(int index)
+    public override sealed void PlayAction(int index)
     {
         Busy = true;
         switch (index)
         {
             case 0:
-                Debug.Log("Action0");
                 Ambush();
                 DropAction(0);
                 break;
             case 1:
-                Debug.Log("Action1");
                 ApproximateShot();
                 DropAction(1);
                 break;
             case 2:
-                Debug.Log("Action2");
                 SwarmOfArrows();
                 DropAction(2);
                 break;
             case 3:
-                Debug.Log("Action3");
                 PomPomGirl();
                 DropAction(3);
                 break;
@@ -47,7 +44,7 @@ public class Archer : Character
 
     private void Ambush()
     {
-        
+
         anim.SetTrigger("Ambush");
         Exposed = true;
         StartCoroutine(GoToTarget(meleePosition.position, transform));
@@ -72,7 +69,6 @@ public class Archer : Character
                 if (character.name == "Boss")
                 {
                     character.ReceiveDamage((Encouraged) ? approximateShotDamageOnBoss * 2 : approximateShotDamageOnBoss);
-                    character.CanBeHealed = false;
                 }
             }
         }
@@ -80,14 +76,14 @@ public class Archer : Character
         {
             //Choose a random heroes for be hitten
             Character character = CharacterManager.sharedInstance.characters[Random.Range(0, CharacterManager.sharedInstance.characters.Count)];
-            while (character.gameObject.name == "Boss")
+            while (character.gameObject.name == "Boss" || character.gameObject.name == "Archer")
             {
                 character = CharacterManager.sharedInstance.characters[Random.Range(0, CharacterManager.sharedInstance.characters.Count)];
             }
 
             character.ReceiveDamage((Encouraged) ? approximateShotDamageOnTeammate * 2 : approximateShotDamageOnTeammate);
         }
-        
+
     }
 
     private void SwarmOfArrows()
@@ -111,15 +107,15 @@ public class Archer : Character
     private void PomPomGirl()
     {
         anim.SetTrigger("PomPomGirl");
-        //for (int i = 0; i < GameManager.sharedInstance.orderedPlayers.Count; i++)
-        //{
-        //    if (GameManager.sharedInstance.orderedPlayers[i].gameObject.name == "Archer")
-        //    {
-        //        GameManager.sharedInstance.orderedPlayers[i + 1].Encouraged = true;
-        //        break;
-        //    }
-        //}
-      
+        for (int i = 0; i < OrderUI.sharedInstance.orderedPlayers.Count; i++)
+        {
+            if (OrderUI.sharedInstance.orderedPlayers[i].gameObject.name == "Archer")
+            {
+                OrderUI.sharedInstance.orderedPlayers[i + 1].Encouraged = true;
+                break;
+            }
+        }
+
     }
 
 }

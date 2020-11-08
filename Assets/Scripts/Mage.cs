@@ -11,7 +11,7 @@ public class Mage : Character
     public float mortalContactDamage;
     public int numberOfPeopleHealed = 2;
 
-    public override void PlayAction(int index)
+    public override sealed void PlayAction(int index)
     {
         Busy = true;
         switch (index)

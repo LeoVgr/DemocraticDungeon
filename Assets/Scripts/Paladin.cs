@@ -12,7 +12,7 @@ public class Paladin : Character
     public float divineStrikeDamage;
     public float divineStrikeFriendlyDamage;
 
-    public override void PlayAction(int index)
+    public override sealed void PlayAction(int index)
     {
         Busy = true;
         switch (index)

@@ -112,7 +112,7 @@ public abstract class Character : MonoBehaviour
 
     public void ReceiveHeal(float amount)
     {
-        if (CanBeHealed)
+        if (CanBeHealed && Life > 0)
         {
 
             if (Life + amount > _initialLife)
@@ -225,9 +225,6 @@ public abstract class Character : MonoBehaviour
                 }
             }
         }
-        
-      
-
     }
 
     public void DropAction(int index)

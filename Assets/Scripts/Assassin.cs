@@ -7,7 +7,7 @@ public class Assassin : Character
 
     public float healPotion;
 
-    public override void PlayAction(int index)
+    public override sealed void PlayAction(int index)
     {
         Busy = true;
         switch (index)

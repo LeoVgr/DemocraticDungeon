@@ -20,8 +20,14 @@ public class OrderUI : MonoBehaviour
     }
 
     [SerializeField]
+    private Transform marker;
+    [SerializeField]
     private List<Transform> characterIcons;
-    private List<Character> orderedPlayers = new List<Character>();
+    public List<Character> orderedPlayers = new List<Character>();
+    [SerializeField]
+    private float offsetYMarker = -0.12f;
+    [SerializeField]
+    private float startXMarker = 2.9f;
     [SerializeField]
     private float offsetY = 0.12f;
     [SerializeField]
@@ -33,6 +39,7 @@ public class OrderUI : MonoBehaviour
 
     private void Start()
     {
+        marker.localPosition = new Vector3(startXMarker, offsetYMarker, 0);
         SortOrder();
     }
 
@@ -52,26 +59,39 @@ public class OrderUI : MonoBehaviour
             index = 0;
             Reset();
         }
+        marker.localPosition = new Vector3(startXMarker - stepX * index, offsetYMarker, 0);
+        if (orderedPlayers[index].Life < 0)
+        {
+            Next();
+        }
     }
 
     public void SortOrder()
     {
         RandomizePositions();
-        foreach(Transform characterIcon in characterIcons)
+        foreach (Transform characterIcon in characterIcons)
         {
             characterIcon.gameObject.SetActive(false);
         }
         for (int i = 0; i < orderedPlayers.Count; i++)
         {
-           PlaceIcon(orderedPlayers[i].gameObject.name, i);
+            PlaceIcon(orderedPlayers[i].gameObject.name, i);
         }
     }
 
-    public void PlaceIcon(string name, int index)
+    public void PlaceAllIcons()
+    {
+        for (int i = 0; i < orderedPlayers.Count; i++)
+        {
+            PlaceIcon(orderedPlayers[i].gameObject.name, i);
+        }
+    }
+
+    private void PlaceIcon(string name, int index)
     {
         foreach (Transform characterIcon in characterIcons)
         {
-            if(characterIcon.gameObject.name == name)
+            if (characterIcon.gameObject.name == name)
             {
                 characterIcon.gameObject.SetActive(true);
                 characterIcon.localPosition = new Vector3(startX - stepX * index, offsetY, 0);
